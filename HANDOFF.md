@@ -1,71 +1,70 @@
-# 最近交接（2026-11-19 00:2x）
+# 最近交接（2026-11-19 23:50）· 新会话接手包
 
-## 一、当前任务
+> **新会话第一步**：读完本文件，再读 `DECISIONS/P1-A2-施工方案.md`（v4，已通过）。
+> 本文件是当前唯一权威交接；旧内容已被替换。
 
-**P1-A1 v6 已部署（2026-11-19 00:02），验收部分完成，仍有 PENDING。下一轮不施工，等裁定。**
+## 一、一句话现状
 
-| 项 | 值 |
+小恋项目：P1-A1 输出清洗**已部署**（v6），但有 3 条 PENDING；P1-A2 裸 DSML 清理的**规范 v7 定稿、施工方案 v4 复审通过**，**代码施工尚未获批、尚未开始**；B（`style_strip` 代码保护）是独立待办。
+
+## 二、新会话先读这些（按顺序）
+
+1. `DECISIONS/P1-A2-施工方案.md`（v4，含复审结论与 commit SHA）
+2. `DECISIONS/P1-A2-裸DSML清理规范.md`（v7 定稿，含 31 条正反例）
+3. `DECISIONS/P1-A2-R1边界裁定清单.md`（R1-a～R1-h 裁定结果）
+4. `PROJECT_STATUS.md`（模块状态总表）
+5. 本文件
+
+## 三、当前状态
+
+| 项 | 状态 |
 |---|---|
-| 已部署版本 | `p1-a1-v6` @ `bc04462361e418219da8110f28d6b50377834105` |
-| 线上 sha256 | `tool_xml_guard c4497e04…` / `multi_bubble 5e2519…`（与仓库 snapshot `diff -q` 为空） |
-| 部署前备份 | `记忆/备份_20261119_p1a1/`（`665eabb4…` / `f368e8ef…`） |
-| 测试 | 21 组 88 项 ALL PASS（隔离测试，不是线上端到端） |
+| P1-A1 v6 | **已部署**（00:02，`bc04462…`），3 条 PENDING 未结 |
+| P1-A2 规范 | **v7 定稿**（R1 全部裁定） |
+| P1-A2 施工方案 | **v4 复审通过** @ `4efbfc140e757ef8e2b14928e8633907d33be3f8` |
+| P1-A2 代码施工 | **未获批、未开始** |
+| B 代码块保护 | 独立待办，未开工 |
+| 仓库 | `zzc`（公开，代码/审查材料）、`zzc-context`（公开，档案） |
 
-### 真机验收结果（区分已完成 / PENDING）
+### P1-A1 三条 PENDING（不得当作 PASS）
 
-已完成（真实 QQ）：
-1. 普通文本保真：`今天 19 号，周四` 等，标点/中文正常。
-2. 首条气泡走管道；后续气泡直发 2 条，内容干净（`multi_bubble` 日志有 `排队 2 条待补发`）。
-3. 4 条入站消息全部有回复；无发送失败、无空消息、Traceback 0。
+1. 完整 DSML 标记的端到端清理（真机被模型改写，清洗器执行但未验证完整标记）。
+2. 代码块保真归因（受 `style_strip` 干扰，`completion_text` 未取得）。
+3. fail-closed 真机证据（不做线上故障注入）。
 
-PENDING（未取得证据，**不得当作 PASS**）：
-1. **完整 DSML 标记的端到端清理**：模型把 `<｜｜DSML｜｜ calls>` 改写成不带尖括号的 `｜｜DSML｜｜ calls`，
-   清洗器确实执行（`req=91584d1eff55`），实发 `前缀A ｜｜ calls 后缀B`。
-   候选实验（线上代码跑 6 个候选原串）显示带尖括号的输入会被清成 `前缀A  后缀B`，
-   与实发一致的是无尖括号版本——**这是候选实验，不是真实 QQ 端到端验收**。
-2. **代码块保真**：该轮无 `tool_xml_guard` 日志（清洗器未触发）；`style_strip.restyle()` 隔离实验确认会把
-   `def add(a, b):\n    return a + b` 改成 `def add(a，b):\nreturn a + b`；原始 `completion_text` 未取得，
-   **不能据此归因于 P1-A1**。
-3. **fail-closed 真机证据**：不做线上故障注入；现有证据仅限隔离测试用例 + 部署后线上代码行为验证。
+## 四、下一步（等主人授权）
 
-## 二、下一步
+**施工前**：需要主人明确说"开始施工"或"批准改代码"。没有这句话不动任何源码。
 
-1. **A（裸 DSML 清理规范）**：规范 v7 定稿，施工方案 v4 **复审通过**（@ `4efbfc14…`）。
-   **代码施工尚未获批、尚未开始**；下一步需要主人单独授权才能改
-   `astrbot_plugin_tool_xml_guard/main.py` 与 `测试/test_out_guard.py`。
-   施工后仍需：完整 diff + 测试日志 + 文件 SHA + 性能实测 → 独立复审 → 批准 → 部署。
-2. **B（`style_strip` / `rule_guard` 代码内容保护）**：独立待办，走只读调用链审查 + 测试设计，不并入 P1-A1。
-3. P1-A1 的三条 PENDING（完整 DSML 端到端、代码块保真归因、fail-closed 真机）保持原样，
-   只能靠新的真实 QQ 场景或 `completion_text` 观测手段补证据；在此之前验收记录保持"部分完成"。
+**施工时**（已批准的范围）：
+1. 只改 `astrbot_plugin_tool_xml_guard/main.py` + `测试/test_out_guard.py`。
+2. 先备份线上文件到 `记忆/备份_YYYYMMDD_p1a2/`。
+3. 按 `DECISIONS/P1-A2-施工方案.md` 实现（fail-closed、R1 七状态、闭合标签、四阶段区间、attrs 三状态）。
+4. 本地副本跑测试：现有 84 项必须 PASS，新增约 23–28 项。
+5. 提交 `zzc` 新分支 `p1-a2-v8`：完整 diff、测试源码、日志、文件 SHA、性能实测。
+6. 独立复审 → 主人批准 → 部署 → 真机验收。
 
-## 三、不要做的事
+## 五、红线
 
-- 复审通过前不部署、不重启线上服务。
-- 不扩大施工范围（只动 `tool_xml_guard` / `multi_bubble` / 测试）。
-- 不碰 recall_boost / P0 / B0.5 / B1 / trust_gate / trust_context / 核心（除已登记的补丁）。
+- 未批准前：不改源码、不改测试、不改配置、不部署、不重启。
+- 不碰：`multi_bubble`、P0、B0.5、B1、recall_boost、`trust_gate`、`trust_context`、AstrBot 核心。
+- 不改 9 个直发点（P1-A2 其余部分）。
 - 推送失败重试，但不关闭 TLS 校验、不改目标分支、不 force push。
-
-## 四、已知限制（验收记录必须保留）
-
-- hook 顺序证据只覆盖**静态可见的 8 个注册点**（`astrbot_plugin_*/main.py` 里的装饰器）。
-  不覆盖动态注册、别名导入、其它文件注册与 AstrBot 内置 handler；线上进程注册表没有只读接口可 dump。
-- P1-A1 只覆盖主回复管道 + 多气泡补发；A 类直发点 9 处（`agency_core`、`life`、`heartbeat`、`note_ack`、
-  `follow_through`、`catchup`、`diary_deliver`、`promise_remind`、`day_plan`）未修。
-- 测试日志是 dsh 在自己容器里跑的；审查方核对的是源码与日志，不是独立复测。
-
-## 五、Git 与仓库约定
-
-- 推送前核对目标分支与本地 commit；推送后核对远端 SHA，不一致就停下报告。
-- 服务器到 GitHub 的 TLS 不稳定，推送通常重试 1–3 次；记录失败原因。
-- `zzc`（公开）= 代码与审查材料；`zzc-context`（**2026-11-19 已公开**）= 项目档案，可直接读取。
-- 隐私提示：`zzc-context` 历史里含 QQ 号（`COOPERATION.md` 第 7 行、`PROJECT_STATUS.md` 白名单行），
-  已固化在全部 9 个历史版本；要彻底脱敏需改写历史，未做。
 
 ## 六、环境速查
 
-- 服务器：腾讯云（地址见维护手册，不写进仓库）；SSH 密钥 `default-workspace/.ssh/id_desktop`
-- 容器：`astrbot`（AstrBot v4.29.4）、`snowluma`（OneBot v11）、`ollama`（bge-m3）
-- 插件目录：`/opt/astrbot/data/plugins`（容器内 `/AstrBot/data/plugins`），共 106 个
-- 备份目录：`/opt/astrbot/shared/记忆/备份_2026xxxx_*`
-- 测试副本：容器 `/tmp/rbtest_p1a/`（与 `reviews/P1-A1-v6/snapshot/` 一致）
-- 工作区文档：`肥鱼维护手册.md`、`肥鱼优化日志.md`、`插件清单.md`、`小恋-人格与生命设计.md`、各阶段 `交付-*.md` / `审查-*.md`
+- 服务器：腾讯云 Ubuntu 22.04，SSH 密钥 `default-workspace/.ssh/id_desktop`
+- 容器：`astrbot`（AstrBot v4.29.4）、`snowluma`（OneBot）、`ollama`（bge-m3）
+- 线上插件：`/opt/astrbot/data/plugins`（容器 `/AstrBot/data/plugins`），106 个
+- 当前线上 `tool_xml_guard/main.py`：`c4497e04…`（v6）；`multi_bubble`：`5e2519…`
+- Git：服务器有 `gh`（已浏览器授权，账号 zzzzzzcccccc10），`gh auth setup-git` 已配
+- 测试副本：容器 `/tmp/rbtest_p1a/`
+- 工作区参考：`肥鱼维护手册.md`、`肥鱼优化日志.md`、`插件清单.md`、`小恋-人格与生命设计.md`
+
+## 七、踩过的坑（省时间）
+
+1. **Markdown 一律 LF**：Windows 上 `Path.write_text` 默认写 CRLF，会让 diff 变噪声。用 `write_text(..., newline="\n")`。
+2. **PowerShell 传中文易乱码**：改含中文的文件用 `write` 工具或 Python 脚本，别用 `Set-Content`。
+3. **`_stop(event, why)` 需要两个参数**；`finalize_text` 不吞异常。
+4. **服务器到 GitHub TLS 不稳**：push/拉取要重试 3–5 次，记录失败原因。
+5. **AstrBot 排序是 `sort(key=-priority)`**：priority 大的先执行，清理钩子要用最小 priority。
