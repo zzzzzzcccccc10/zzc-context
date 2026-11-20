@@ -1,7 +1,9 @@
-# 最近交接（2026-11-21 00:05）· 新会话接手包
+# 最近交接（2026-11-21 00:45）· 新会话接手包
 
-> **新会话第一步**：读完本文件，再读 `DECISIONS/P1-A2-施工方案.md`（v4 + 第十三节 v11 修订）。
-> 本文件是当前唯一权威交接；旧内容已被替换。
+> **新会话启动（固定口令）**：主人说「继续小恋项目，先按 zzc-context 最新 COOPERATION.md 执行上下文启动校验」
+> 时，按 `COOPERATION.md` 第四节执行：先读 HANDOFF → PROJECT_STATUS → COOPERATION → _deliver/README，
+> 记录分支/commit/路径，检查新旧冲突，再读决策/报告/代码，向主人汇报基线。
+> 本文件是当前交接入口；旧内容已被替换。
 
 ## 一、一句话现状
 
@@ -9,11 +11,13 @@
 
 ## 二、新会话先读这些（按顺序）
 
-1. `DECISIONS/P1-A2-施工方案.md`（v4 + 第十一节 v9 + 第十二节 v10 + 第十三节 v11 修订）
-2. `DECISIONS/P1-A2-裸DSML清理规范.md`（v7 + 第九节 v8 修订 + 第十节 v11 修订：非法候选隔离）
-3. `DECISIONS/P1-A2-R1边界裁定清单.md`（R1-a～R1-h 裁定结果）
-4. `PROJECT_STATUS.md`（模块状态总表）
-5. 本文件
+1. 本文件（HANDOFF.md）
+2. `PROJECT_STATUS.md`（模块状态、部署状态、PENDING）
+3. `COOPERATION.md`（三方职责、启动协议、交付规范）
+4. `_deliver/README.md`（当前/历史正式报告索引）
+5. 当前任务的决策文件（本阶段：`DECISIONS/P1-A2-施工方案.md`、`DECISIONS/P1-A2-裸DSML清理规范.md`、`DECISIONS/P1-A2-R1边界裁定清单.md`）
+6. 当前任务的正式交付报告（部署准备：`_deliver/P1-A2-v14-部署准备/部署准备报告.md`）
+7. 报告引用的代码、测试源码与日志（`zzc` 分支 `p1-a2-v14` 的 `reviews/P1-A2-v14/`）
 
 ## 三、当前状态
 

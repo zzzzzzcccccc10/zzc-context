@@ -92,14 +92,14 @@
 
 - `tool_xml_guard/metadata.yaml` 的 version 与新代码不一致（见第三节第 7 条）。
 
-## 四、P1-recall_boost 节点二部署（2026-11-17）
+## 五、P1-recall_boost 节点二部署（2026-11-17）
 
 - 部署后 `main.py 65e69d66…`、`vec_cache.py e8b6f3d0…`，独立备份在 `记忆/备份_20261117_recall_boost/`。
 - 冷缓存：首轮 5 条失败未发布 READY，60 秒重试补全后发布（fail-closed 生效）。
 - 请求级注入窗：0.18–9.4 秒（旧版分钟级）。
 - 隐私：私聊 `r1=False`、群/非主人私聊只拿 public 原子 + 本会话文档；canary 8 项通过。
 
-## 五、未完成的观测项（不阻断封版）
+## 六、未完成的观测项（不阻断封版）
 
 1. 线上满载并发（两个 query 槽位）未压满：单会话有 session lock + `msg_merge` 合并。
 2. 请求级 LRU 命中缺线上计数（短问句 embed 仅 0.10s，耗时差异在噪声内）。
