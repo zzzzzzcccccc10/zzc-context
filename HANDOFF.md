@@ -35,7 +35,11 @@
 ## 四、下一步
 
 **当前**：v14 复审通过，**部署准备完成，等待部署批准**；线上仍是 v6，未部署、未重启。
-准备材料：`_deliver/P1-A2-v14-部署准备/部署准备报告.md`（核验、备份、部署、回滚、验证清单）。
+准备材料（正式归档）：
+- 仓库 `zzzzzzcccccc10/zzc-context`，分支 `main`，commit `25bcac9`
+- `_deliver/P1-A2-v14-部署准备/部署准备报告.md`
+- https://github.com/zzzzzzcccccc10/zzc-context/blob/25bcac9/_deliver/P1-A2-v14-部署准备/部署准备报告.md
+- v14 交付报告同路径：`_deliver/P1-A2-v14/交付报告.md`
 
 **v14 已完成的内容**：
 1. 只改 `astrbot_plugin_tool_xml_guard/main.py` + `测试/test_out_guard.py`。

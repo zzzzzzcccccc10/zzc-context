@@ -73,7 +73,10 @@
 - **代码施工**：`p1-a2-v14` @ `9151477`；32 组 204 项 ALL PASS（5KB 5.62ms）。
 - **v14 复审通过**（2026-11-21 ChatGPT 独立复审），进入部署准备阶段。
 - **未部署、未重启**；线上 `main.py` 仍为 `c4497e04…`（v6）。
-- 部署准备：核验、备份确认、部署与回滚方案、验证清单已完成，见 `_deliver/P1-A2-v14-部署准备/部署准备报告.md`。
+- 部署准备：核验、备份确认、部署与回滚方案、验证清单已完成。
+  正式报告：`zzzzzzcccccc10/zzc-context`，分支 `main`，commit `25bcac9`，
+  路径 `_deliver/P1-A2-v14-部署准备/部署准备报告.md`，
+  https://github.com/zzzzzzcccccc10/zzc-context/blob/25bcac9/_deliver/P1-A2-v14-部署准备/部署准备报告.md
 - 状态：**部署准备完成，等待部署批准**。
 - 证据边界：隔离 Event 测试证明 stop_event / 链清空，不等于真实发送管道；未部署，无真机 E2E。
 
