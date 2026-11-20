@@ -9,8 +9,8 @@
 
 | 任务 | 报告 | 状态 | 仓库 | 分支 | commit | 路径 | GitHub 链接 |
 |---|---|---|---|---|---|---|---|
-| P1-A2 v14 | 交付报告 | 当前有效（部署依据） | zzzzzzcccccc10/zzc-context | main | `25bcac9` | `_deliver/P1-A2-v14/交付报告.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/25bcac9/_deliver/P1-A2-v14/交付报告.md |
-| P1-A2 v14 部署准备 | 部署准备报告 | 当前有效（等待部署批准） | zzzzzzcccccc10/zzc-context | main | `25bcac9` | `_deliver/P1-A2-v14-部署准备/部署准备报告.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/25bcac9/_deliver/P1-A2-v14-部署准备/部署准备报告.md |
+| P1-A2 v14 | 交付报告 | 当前有效（部署依据） | zzzzzzcccccc10/zzc-context | main | `25bcac98e9255b95b58ab61f486ccc5ca08a5f31` | `_deliver/P1-A2-v14/交付报告.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/25bcac98e9255b95b58ab61f486ccc5ca08a5f31/_deliver/P1-A2-v14/交付报告.md |
+| P1-A2 v14 部署准备 | 部署准备报告 | 当前有效（等待部署批准） | zzzzzzcccccc10/zzc-context | main | `25bcac98e9255b95b58ab61f486ccc5ca08a5f31` | `_deliver/P1-A2-v14-部署准备/部署准备报告.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/25bcac98e9255b95b58ab61f486ccc5ca08a5f31/_deliver/P1-A2-v14-部署准备/部署准备报告.md |
 
 ## 二、历史报告（保留，不删除）
 
@@ -18,12 +18,12 @@ v8–v13 的审查材料和交付报告在 `zzc` 对应分支的 `reviews/<版�
 
 | 版本 | 状态 | 仓库 | 分支 | commit | 材料路径 |
 |---|---|---|---|---|---|
-| v13 | 历史，已被 v14 替代 | zzzzzzcccccc10/zzc | `p1-a2-v13` | `6ae856c` | `reviews/P1-A2-v13/` |
-| v12 | 历史，已被 v14 替代 | zzzzzzcccccc10/zzc | `p1-a2-v12` | `54ae3a9` | `reviews/P1-A2-v12/` |
-| v11 | 历史，已被 v14 替代 | zzzzzzcccccc10/zzc | `p1-a2-v11` | `f066cf9` | `reviews/P1-A2-v11/` |
-| v10 | 历史，已被 v14 替代 | zzzzzzcccccc10/zzc | `p1-a2-v10` | `ce2b90f` | `reviews/P1-A2-v10/` |
-| v9 | 历史，已被 v14 替代 | zzzzzzcccccc10/zzc | `p1-a2-v9` | `a280025` | `reviews/P1-A2-v9/` |
-| v8 | 历史，已被 v14 替代 | zzzzzzcccccc10/zzc | `p1-a2-v8` | `67b2f15` | `reviews/P1-A2-v8/` |
+| v13 | 历史，已被 v14 替代 | zzzzzzcccccc10/zzc | `p1-a2-v13` | `6ae856c31f57b9df9a149742b6ad2311f312ff3e` | `reviews/P1-A2-v13/` |
+| v12 | 历史，已被 v14 替代 | zzzzzzcccccc10/zzc | `p1-a2-v12` | `54ae3a93c40303e3332c3fbf6e81ebb6d70b4584` | `reviews/P1-A2-v12/` |
+| v11 | 历史，已被 v14 替代 | zzzzzzcccccc10/zzc | `p1-a2-v11` | `f066cf9e879db661cb7e9edd256afbd4c89d6ea8` | `reviews/P1-A2-v11/` |
+| v10 | 历史，已被 v14 替代 | zzzzzzcccccc10/zzc | `p1-a2-v10` | `ce2b90fa307a030216e920fcf1ec79fc62e65d5e` | `reviews/P1-A2-v10/` |
+| v9 | 历史，已被 v14 替代 | zzzzzzcccccc10/zzc | `p1-a2-v9` | `a2800253da6d88be62a677154ffbe61b97724255` | `reviews/P1-A2-v9/` |
+| v8 | 历史，已被 v14 替代 | zzzzzzcccccc10/zzc | `p1-a2-v8` | `67b2f15b58bbc6bb004d4d1cc4aaee5ad12a88ff` | `reviews/P1-A2-v8/` |
 
 ## 三、报告生命周期
 

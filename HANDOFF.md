@@ -7,7 +7,7 @@
 
 ## 一、一句话现状
 
-小恋项目：P1-A1 输出清洗**已部署**（v6），但有 3 条 PENDING；P1-A2 裸 DSML 清理**v14 复审通过**（`p1-a2-v14` @ `9151477`，204 项 ALL PASS），**部署准备完成、等待部署批准**；B（`style_strip` 代码保护）是独立待办。
+小恋项目：P1-A1 输出清洗**已部署**（v6），但有 3 条 PENDING；P1-A2 裸 DSML 清理**v14 复审通过**（`p1-a2-v14` @ `91514773b2f04bcb83c20e8a1daaa6cfc359a475`，204 项 ALL PASS），**部署准备完成、等待部署批准**；B（`style_strip` 代码保护）是独立待办。
 
 ## 二、新会话先读这些（按顺序）
 
@@ -23,10 +23,10 @@
 
 | 项 | 状态 |
 |---|---|
-| P1-A1 v6 | **已部署**（00:02，`bc04462…`），3 条 PENDING 未结 |
+| P1-A1 v6 | **已部署**（00:02，`bc04462361e418219da8110f28d6b50377834105`），3 条 PENDING 未结 |
 | P1-A2 规范 | **v7 + 第九节 v8 修订 + 第十节 v11 修订**（非法候选隔离） |
 | P1-A2 施工方案 | **v4 + 第十一节 v9 + 第十二节 v10 + 第十三节 v11 修订** |
-| P1-A2 代码施工 | **v14 复审通过** @ `9151477`（`p1-a2-v14`）；**部署准备完成，未部署** |
+| P1-A2 代码施工 | **v14 复审通过** @ `91514773b2f04bcb83c20e8a1daaa6cfc359a475`（`p1-a2-v14`）；**部署准备完成，未部署** |
 | B 代码块保护 | 独立待办，未开工 |
 | 仓库 | `zzc`（公开，代码/审查材料）、`zzc-context`（公开，档案） |
 
@@ -40,9 +40,9 @@
 
 **当前**：v14 复审通过，**部署准备完成，等待部署批准**；线上仍是 v6，未部署、未重启。
 准备材料（正式归档）：
-- 仓库 `zzzzzzcccccc10/zzc-context`，分支 `main`，commit `25bcac9`
+- 仓库 `zzzzzzcccccc10/zzc-context`，分支 `main`，commit `25bcac98e9255b95b58ab61f486ccc5ca08a5f31`
 - `_deliver/P1-A2-v14-部署准备/部署准备报告.md`
-- https://github.com/zzzzzzcccccc10/zzc-context/blob/25bcac9/_deliver/P1-A2-v14-部署准备/部署准备报告.md
+- https://github.com/zzzzzzcccccc10/zzc-context/blob/25bcac98e9255b95b58ab61f486ccc5ca08a5f31/_deliver/P1-A2-v14-部署准备/部署准备报告.md
 - v14 交付报告同路径：`_deliver/P1-A2-v14/交付报告.md`
 
 **v14 已完成的内容**：
