@@ -12,7 +12,8 @@
 | P1-A2 v14 | 交付报告 | 当前有效（已部署，部署依据） | zzzzzzcccccc10/zzc-context | main | `25bcac98e9255b95b58ab61f486ccc5ca08a5f31` | `_deliver/P1-A2-v14/交付报告.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/25bcac98e9255b95b58ab61f486ccc5ca08a5f31/_deliver/P1-A2-v14/交付报告.md |
 | P1-A2 v14 部署准备 | 部署准备报告 | 历史（已执行；当前以部署执行报告为准） | zzzzzzcccccc10/zzc-context | main | `25bcac98e9255b95b58ab61f486ccc5ca08a5f31` | `_deliver/P1-A2-v14-部署准备/部署准备报告.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/25bcac98e9255b95b58ab61f486ccc5ca08a5f31/_deliver/P1-A2-v14-部署准备/部署准备报告.md |
 | P1-A2 v14 部署 | 部署执行报告 | 当前有效（已部署；真实 QQ 冒烟未执行） | zzzzzzcccccc10/zzc-context | main | `76e40648b215a04989601db45987f23f180e8364` | `_deliver/P1-A2-v14-部署/部署执行报告.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/76e40648b215a04989601db45987f23f180e8364/_deliver/P1-A2-v14-部署/部署执行报告.md |
-| P1-A2 v14 真实 QQ 冒烟 | 测试方案 | 待批准（未执行） | zzzzzzcccccc10/zzc-context | main | `f7b512cf5e914487dc89cfdf78007d12bf9e59cb` | `_deliver/P1-A2-v14-真实QQ冒烟/真实QQ冒烟测试方案.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/f7b512cf5e914487dc89cfdf78007d12bf9e59cb/_deliver/P1-A2-v14-真实QQ冒烟/真实QQ冒烟测试方案.md |
+| P1-A2 v14 真实 QQ 冒烟 | 测试方案 | 历史（已执行，见验收结果） | zzzzzzcccccc10/zzc-context | main | `f7b512cf5e914487dc89cfdf78007d12bf9e59cb` | `_deliver/P1-A2-v14-真实QQ冒烟/真实QQ冒烟测试方案.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/f7b512cf5e914487dc89cfdf78007d12bf9e59cb/_deliver/P1-A2-v14-真实QQ冒烟/真实QQ冒烟测试方案.md |
+| P1-A2 v14 真实 QQ 冒烟验收 | 验收结果 | 当前有效（真实链路通过；completion 不可得） | zzzzzzcccccc10/zzc-context | main | `SMOKE_RESULT_COMMIT` | `_deliver/P1-A2-v14-真实QQ冒烟/真实QQ冒烟验收结果.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/SMOKE_RESULT_COMMIT/_deliver/P1-A2-v14-真实QQ冒烟/真实QQ冒烟验收结果.md |
 
 ## 二、历史报告（保留，不删除）
 
