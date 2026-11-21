@@ -7,7 +7,7 @@
 
 ## 一、一句话现状
 
-小恋项目：P1-A1 输出清洗**已部署**（v6），但有 3 条 PENDING；P1-A2 裸 DSML 清理**v14 复审通过**（`p1-a2-v14` @ `91514773b2f04bcb83c20e8a1daaa6cfc359a475`，204 项 ALL PASS），**部署准备完成、等待部署批准**；B（`style_strip` 代码保护）是独立待办。
+小恋项目：P1-A1 输出清洗**已部署**（v6），但有 3 条 PENDING；P1-A2 裸 DSML 清理**v14 已部署**（`p1-a2-v14` @ `91514773b2f04bcb83c20e8a1daaa6cfc359a475`，线上 `2f180cf0…`，204 项 ALL PASS），**真实 QQ 冒烟未授权**；B（`style_strip` 代码保护）是独立待办。
 
 ## 二、新会话先读这些（按顺序）
 
@@ -26,7 +26,7 @@
 | P1-A1 v6 | **已部署**（00:02，`bc04462361e418219da8110f28d6b50377834105`），3 条 PENDING 未结 |
 | P1-A2 规范 | **v7 + 第九节 v8 修订 + 第十节 v11 修订**（非法候选隔离） |
 | P1-A2 施工方案 | **v4 + 第十一节 v9 + 第十二节 v10 + 第十三节 v11 修订** |
-| P1-A2 代码施工 | **v14 复审通过** @ `91514773b2f04bcb83c20e8a1daaa6cfc359a475`（`p1-a2-v14`）；**部署准备完成，未部署** |
+| P1-A2 代码施工 | **v14 已部署** @ `91514773b2f04bcb83c20e8a1daaa6cfc359a475`（`p1-a2-v14`）；线上 `2f180cf0…`；真实 QQ 冒烟未授权 |
 | B 代码块保护 | 独立待办，未开工 |
 | 仓库 | `zzc`（公开，代码/审查材料）、`zzc-context`（公开，档案） |
 
@@ -38,21 +38,23 @@
 
 ## 四、下一步
 
-**当前**：v14 复审通过，**部署准备完成，等待部署批准**；线上仍是 v6，未部署、未重启。
-准备材料（正式归档）：
-- 仓库 `zzzzzzcccccc10/zzc-context`，分支 `main`，commit `25bcac98e9255b95b58ab61f486ccc5ca08a5f31`
-- `_deliver/P1-A2-v14-部署准备/部署准备报告.md`
-- https://github.com/zzzzzzcccccc10/zzc-context/blob/25bcac98e9255b95b58ab61f486ccc5ca08a5f31/_deliver/P1-A2-v14-部署准备/部署准备报告.md
-- v14 交付报告同路径：`_deliver/P1-A2-v14/交付报告.md`
+**当前**：**v14 已部署**（2026-11-21 22:30，线上 `2f180cf0…`），服务已重启，
+插件加载成功、适配器已连接、204 项隔离测试 ALL PASS。
+**真实 QQ 冒烟未执行**，需要主人单独批准；回滚点已备。
+
+部署执行报告（正式归档）：
+- 仓库 `zzzzzzcccccc10/zzc-context`，分支 `main`，commit 见本文件所在 commit
+- `_deliver/P1-A2-v14-部署/部署执行报告.md`
+- 备份：`/opt/astrbot/shared/记忆/备份_20261121_p1a2_v14_pre/`（v6 `c4497e04…` + multi_bubble `5e2519…`）
 
 **v14 已完成的内容**：
 1. 只改 `astrbot_plugin_tool_xml_guard/main.py` + `测试/test_out_guard.py`。
-2. 备份线上文件：`/opt/astrbot/shared/记忆/备份_20261119_p1a2/`（已核验 SHA 一致）。
+2. 部署前备份：`/opt/astrbot/shared/记忆/备份_20261121_p1a2_v14_pre/`（SHA 已核验）。
 3. 修复 v13 阻断项：`_syntax_regions()` 第二轮尊重第一轮 DSML SYNTAX；
    `_xml_deletions()` 只保护 DSML 区间；新增 3 项复审回归。
 4. 测试：**32 组 204 项 ALL PASS**（v13 的 201 项保留 + v14 新增 3 项；5KB 5.62ms）。
 5. 提交 `zzc` 分支 `p1-a2-v14`：完整 diff、测试源码、日志、文件 SHA、性能实测，在 `reviews/P1-A2-v14/`。
-6. **未部署、未重启**；线上 `main.py` 仍为 `c4497e04…`（v6）。
+6. **已部署、已重启**；线上 `main.py` 为 `2f180cf0…`（v14）；真实 QQ 冒烟未授权。
 
 ## 五、红线
 
@@ -66,7 +68,7 @@
 - 服务器：腾讯云 Ubuntu 22.04，SSH 密钥 `default-workspace/.ssh/id_desktop`
 - 容器：`astrbot`（AstrBot v4.29.4）、`snowluma`（OneBot）、`ollama`（bge-m3）
 - 线上插件：`/opt/astrbot/data/plugins`（容器 `/AstrBot/data/plugins`），106 个
-- 当前线上 `tool_xml_guard/main.py`：`c4497e04…`（v6）；`multi_bubble`：`5e2519…`
+- 当前线上 `tool_xml_guard/main.py`：`2f180cf0…`（v14，2026-11-21 22:30 部署）；`multi_bubble`：`5e2519…`
 - Git：服务器有 `gh`（已浏览器授权，账号 zzzzzzcccccc10），`gh auth setup-git` 已配
 - 测试副本：容器 `/tmp/rbtest_p1a/`
 - 工作区参考：`肥鱼维护手册.md`、`肥鱼优化日志.md`、`插件清单.md`、`小恋-人格与生命设计.md`
