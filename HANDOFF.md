@@ -16,7 +16,7 @@
 3. `COOPERATION.md`（三方职责、启动协议、交付规范）
 4. `_deliver/README.md`（当前/历史正式报告索引）
 5. 当前任务的决策文件（本阶段：`DECISIONS/P1-A2-施工方案.md`、`DECISIONS/P1-A2-裸DSML清理规范.md`、`DECISIONS/P1-A2-R1边界裁定清单.md`）
-6. 当前任务的正式交付报告（部署准备：`_deliver/P1-A2-v14-部署准备/部署准备报告.md`）
+6. 当前任务的正式交付报告（部署执行：`_deliver/P1-A2-v14-部署/部署执行报告.md`，创建 commit `76e40648b215a04989601db45987f23f180e8364`；部署准备报告为历史材料）
 7. 报告引用的代码、测试源码与日志（`zzc` 分支 `p1-a2-v14` 的 `reviews/P1-A2-v14/`）
 
 ## 三、当前状态
@@ -43,7 +43,9 @@
 **真实 QQ 冒烟未执行**，需要主人单独批准；回滚点已备。
 
 部署执行报告（正式归档）：
-- 仓库 `zzzzzzcccccc10/zzc-context`，分支 `main`，commit 见本文件所在 commit
+- 仓库 `zzzzzzcccccc10/zzc-context`，分支 `main`
+- 报告创建 commit：`76e40648b215a04989601db45987f23f180e8364`
+- 文档索引修正 commit：`aeabb283183b9e0acafa0065d8140e6a3a601dd3`（只回填 SHA，报告内容未变）
 - `_deliver/P1-A2-v14-部署/部署执行报告.md`
 - 备份：`/opt/astrbot/shared/记忆/备份_20261121_p1a2_v14_pre/`（v6 `c4497e04…` + multi_bubble `5e2519…`）
 
