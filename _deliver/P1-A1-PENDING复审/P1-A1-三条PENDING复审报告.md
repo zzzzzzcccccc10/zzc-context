@@ -92,6 +92,8 @@ msg 35 仍含 `｜｜DSML｜｜`，而最终实发是 `前缀A ｜｜ calls 后�
 
 **能证明/不能证明**：L0/L1 证明 cleaner 与钩子的确定性行为；L2 证明整条 pipeline + 出站；都不能证明模型实际输出、真实 OneBot/客户端、运行时注册表全集。
 
+**L2 执行结果（2026-11-22）**：v6/v14 均出站 `前缀A  后缀B`，通过；仍不是真实模型/QQ E2E。详见 `_deliver/P1-A1-PENDING复审/P1-A1-L2-M2执行报告.md`。
+
 ### 2.6 风险
 
 - 验收对象错位（v6 vs v14）→ 高；
@@ -100,7 +102,7 @@ msg 35 仍含 `｜｜DSML｜｜`，而最终实发是 `前缀A ｜｜ calls 后�
 - 关键日志在 docker logs，未归档，轮转后丢失 → 中；
 - 把 L0 写成 E2E → 违反证据边界 → 中。
 
-## 三、PENDING 2：style_strip 对代码块的影响
+## 三、PENDING 2：style_strip 对代码块的影响（已结案：归因闭合）
 
 ### 3.1 调用链（按实际执行顺序）
 
@@ -127,6 +129,8 @@ meme_manager(99999) → style_strip(90) → face_map(80) → rule_guard(80)
 - 各插件版本钉住：style_strip `bb2e9984…`、tool_xml_guard v6 `c4497e04…`、multi_bubble `5e2519…`。
 
 **变化环节**：`astrbot_plugin_style_strip/main.py` 的 `on_decorating`（priority=90），具体是 `squash_blank()`（删空行）+ `restyle()`（`,→，`；`[ \t]{2,}→1`；行首空白清零 → 0 缩进）。
+
+**结论（2026-11-22 主人批准结案）**：该轮损坏归因闭合——原始 completion（DB msg 37，69 字符、格式完好）→ 最终发送（58 字符、缩进丢失、逗号全角化）→ style_strip 重放逐字节相等 → P1-A1/multi_bubble/AstrBot 自身排除。**这不代表 B 修复完成**；B 仍是独立待办，且必须覆盖无围栏代码。
 
 ### 3.3 与 B 的关系
 
@@ -189,6 +193,8 @@ v6 一代（及 v14 保留）fail-closed 用例覆盖：
 
 **明确排除**：线上进程 monkeypatch/调试器注入、部署带异常开关的临时版本、构造极端输入“碰巧”抛异常。
 
+**M2 执行结果（2026-11-22）**：normal 通过；`finalize_text` 异常 fail-closed 通过；**`has_marker` 异常 fail-open**（v6/v14 均未 stop，发送未清洗原文），按批准停止，未改代码。详见执行报告。
+
 ### 4.5 已证实 / 推测 / 未知
 
 - 已证实：隔离测试覆盖的动作；核心合同（静态）；线上 24h 无 fail-closed 日志；v14 的 `_stop`/`guard` 控制流与 v6 一致；
@@ -247,6 +253,10 @@ v6 一代（及 v14 保留）fail-closed 用例覆盖：
 
 - `附件/agent1-dsml.md`：PENDING 1 完整分析（含 v6/v14 内存实测、日志行号、最小验证方案）；
 - `附件/agent2-style-strip.md`：PENDING 2 完整分析（含调用链、DB 证据、逐字节重放、B 清单）；
-- `附件/agent3-fail-closed.md`：PENDING 3 完整分析（含测试覆盖表、核心合同、M1/M2/M3、代码不一致）。
+- `附件/agent3-fail-closed.md`：PENDING 3 完整分析（含测试覆盖表、核心合同、M1/M2/M3、代码不一致）；
+- `附件/证据摘录-脱敏.md`：DB/日志/重放/L2/M2 的脱敏摘录（不含完整 DB 或未筛选对话）；
+- `P1-A1-L2-M2执行报告.md`：L2 与 M1/M2 执行结果（含 fail-open 缺陷）；
+- `harness/p1a1_pipeline_harness.py`：隔离管道 harness；
+- `_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`：B 方案（待复审）。
 
 附件为子智能体独立分析，主 Agent 已在正文交叉复核；两者不一致处以正文“已证实/推测/未知”标注为准。

@@ -15,6 +15,8 @@
 | P1-A2 v14 真实 QQ 冒烟 | 测试方案 | 历史（已执行，见验收结果） | zzzzzzcccccc10/zzc-context | main | `f7b512cf5e914487dc89cfdf78007d12bf9e59cb` | `_deliver/P1-A2-v14-真实QQ冒烟/真实QQ冒烟测试方案.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/f7b512cf5e914487dc89cfdf78007d12bf9e59cb/_deliver/P1-A2-v14-真实QQ冒烟/真实QQ冒烟测试方案.md |
 | P1-A2 v14 真实 QQ 冒烟验收 | 验收结果 | 封版（限定验收通过；真实链路最小冒烟通过，有证据边界；非完整 E2E 原文取证） | zzzzzzcccccc10/zzc-context | main | `e5189e34f880f4abcf12441063ef2ed1ae4de3ed` | `_deliver/P1-A2-v14-真实QQ冒烟/真实QQ冒烟验收结果.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/e5189e34f880f4abcf12441063ef2ed1ae4de3ed/_deliver/P1-A2-v14-真实QQ冒烟/真实QQ冒烟验收结果.md |
 | P1-A1 三条 PENDING 复审 | 只读复审报告 | 当前有效（复审完成；未施工，待批准） | zzzzzzcccccc10/zzc-context | main | `a5ffd14819fc26e6438a48b6641b09c16d428923` | `_deliver/P1-A1-PENDING复审/P1-A1-三条PENDING复审报告.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/a5ffd14819fc26e6438a48b6641b09c16d428923/_deliver/P1-A1-PENDING复审/P1-A1-三条PENDING复审报告.md |
+| P1-A1 L2/M2 执行 | 执行报告 | 当前有效（L2 通过；M2 发现 fail-open，未修） | zzzzzzcccccc10/zzc-context | main | `P1A1_EXEC_COMMIT` | `_deliver/P1-A1-PENDING复审/P1-A1-L2-M2执行报告.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/P1A1_EXEC_COMMIT/_deliver/P1-A1-PENDING复审/P1-A1-L2-M2执行报告.md |
+| B style_strip 代码保护 | 设计方案 | 待复审（未施工） | zzzzzzcccccc10/zzc-context | main | `B_DESIGN_COMMIT` | `_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/B_DESIGN_COMMIT/_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md |
 
 ## 二、历史报告（保留，不删除）
 
