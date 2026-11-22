@@ -88,7 +88,7 @@ msg 35 仍含 `｜｜DSML｜｜`，而最终实发是 `前缀A ｜｜ calls 后�
 
 **L1 钩子层**（0 线上，fake event）：H1 裸标记 → chain 改写；H2 完整 LEAK → stop + 空链；H3 `finalize_text` 抛异常 → stop + 不残留。
 
-**L2 管道层 E2E**（不依赖模型，需单独批准）：stub provider 固定返回含完整标记的 `completion_text`，捕获出站 payload，跑真实 `ResultDecorateStage → RespondStage`，断言出站 `前缀A  后缀B`。这是唯一能叫“端到端”又不依赖模型随机性的做法。
+**L2 集成层**（不依赖模型，需单独批准）：固定结果链输入（人工构造 `MessageEventResult`，原计划 stub provider），跑真实 `ResultDecorateStage → RespondStage`，捕获出站，断言 `前缀A  后缀B`。实际执行未调用 stub provider / `PipelineScheduler`；报告措辞已按“固定结果链输入的真实装饰/响应阶段集成验证”修正。
 
 **能证明/不能证明**：L0/L1 证明 cleaner 与钩子的确定性行为；L2 证明整条 pipeline + 出站；都不能证明模型实际输出、真实 OneBot/客户端、运行时注册表全集。
 
