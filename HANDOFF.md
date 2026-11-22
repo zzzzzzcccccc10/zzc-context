@@ -41,8 +41,8 @@
 **P1-A1 复审后续（2026-11-22）**：PENDING 2 已结案；PENDING 1 的 L2 通过（v6/v14 出站 `前缀A  后缀B`）；
 PENDING 3 的 M2 复现 fail-open（`has_marker` 异常时未 stop，发送未清洗原文；v6/v14 均复现）。
 修复候选 `p1-a1-v14-failclosed` @ `3ac1c5f400b7e568816981ae1cfd1edfa7416856` **复审通过**；
-部署准备 v3 复审暂不通过；v4 补充完成（统一恢复校验；`_deliver/P1-A1-PENDING复审/P3-部署准备报告.md`），
-**待复审；未部署**；B v6 已补 A4 基准/Tab 规则，待基线确认；PENDING 3 未关闭；线上仍 v14。**不施工。**
+部署准备 v5 完成（统一启动前置条件；`_deliver/P1-A1-PENDING复审/P3-部署准备报告.md`），
+**待最终复审；未部署**；B v6 设计基线已确认，代码施工未批准、未开始；PENDING 3 未关闭；线上仍 v14。**不施工。**
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 
