@@ -43,6 +43,7 @@ PENDING 3 的 M2 复现 fail-open（`has_marker` 异常时未 stop，发送未�
 修复候选 `p1-a1-v14-failclosed` @ `3ac1c5f400b7e568816981ae1cfd1edfa7416856` **复审通过**；
 **P3 修复已部署**（线上 `bba95b71…`；27 项 + 204 项 PASS；备份 v14 `2f180cf0…`）；
 PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确认、代码施工未批准未开始；线上原 v14 已被 P3 修复替换。**不施工。**
+**设计与评估（2026-11-22）**：部署脚本整改设计、权限安全专项评估、PENDING 1 真实链路方案、PENDING 3 fail-closed 方案已出，待复审；未施工、未执行。PENDING 1/3 未关闭。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 
