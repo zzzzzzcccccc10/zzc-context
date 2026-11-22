@@ -19,7 +19,7 @@
 | P1-A1 P3 fail-open 修复 | 修复设计 | 候选已提交（`efd66db`），待复审；未部署 | zzzzzzcccccc10/zzc-context | main | `523e64af7f7ceacac66d4568fc4efeac111bb9f8` | `_deliver/P1-A1-PENDING复审/P3-fail-open修复设计.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/523e64af7f7ceacac66d4568fc4efeac111bb9f8/_deliver/P1-A1-PENDING复审/P3-fail-open修复设计.md |
 | P1-A1 P3 修复候选交付 | 交付报告 | 当前有效（候选复审通过 3ac1c5f；部署准备补充完成，待复审/批准） | zzzzzzcccccc10/zzc-context | main | `d1d9ea94b20aa0ad480bc8083e92ee1887300cff` | `_deliver/P1-A1-PENDING复审/P3-failclosed-修复候选交付报告.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/d1d9ea94b20aa0ad480bc8083e92ee1887300cff/_deliver/P1-A1-PENDING复审/P3-failclosed-修复候选交付报告.md |
 | P1-A1 P3 部署准备 | 部署准备报告 | v5 最终复审通过；未部署；部署仍需主人单独批准 | zzzzzzcccccc10/zzc-context | main | `b1c2cd7f47e2105968b22803fff094e03e3f8f1b` | `_deliver/P1-A1-PENDING复审/P3-部署准备报告.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/b1c2cd7f47e2105968b22803fff094e03e3f8f1b/_deliver/P1-A1-PENDING复审/P3-部署准备报告.md |
-| B style_strip 代码保护 | 设计方案 | v6 设计基线已确认；代码施工未批准、未开始 | zzzzzzcccccc10/zzc-context | main | `B_DESIGN_FINAL_COMMIT` | `_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/B_DESIGN_FINAL_COMMIT/_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md |
+| B style_strip 代码保护 | 设计方案 | v6 设计基线已确认；代码施工未批准、未开始 | zzzzzzcccccc10/zzc-context | main | `d72c28d56e9bf10e095458dc5ed304942ca9f5ad` | `_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md` | https://github.com/zzzzzzcccccc10/zzc-context/blob/d72c28d56e9bf10e095458dc5ed304942ca9f5ad/_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md |
 
 ## 二、历史报告（保留，不删除）
 
