@@ -45,6 +45,7 @@ PENDING 3 的 M2 复现 fail-open（`has_marker` 异常时未 stop，发送未�
 PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确认、代码施工未批准未开始；线上原 v14 已被 P3 修复替换。**不施工。**
 **设计与评估（2026-11-22）**：部署脚本整改设计、权限安全专项评估、PENDING 1 真实链路方案、PENDING 3 fail-closed 方案已出，待复审；未施工、未执行。PENDING 1/3 未关闭。
 **v34 复审（2026-11-23）**：v34 独立复审**不通过**，建议 v35；v35 待整改。v35 正式复审须用 **Agent Teams** 四队友（内核/Socket 语义、协议/进程生命周期、Evidence/审计状态机、对抗场景/测试覆盖）只读独立审查，Lead 汇总并标注未验证项；不以多数意见代替技术证明。设计通过≠施工授权。
+**v35 复审（2026-11-23）**：Agent Teams 四队友（a-kernel/b-protocol/c-evidence/d-adversarial）独立审查，**四人均不通过**；汇总结论 v35 不通过、建议 v36；报告 `_deliver/P1-A1-PENDING复审/v35复审报告.md`。核心阻断：SCM_RIGHTS/分帧合同、execve 结果不可观测、放行不可审计、端点继承顺序、evidence 重放/单写者、测试判据缺失。未验证项（需目标 Linux 实验）已列，等主人单独授权。未施工。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 

@@ -46,7 +46,7 @@
    P3 修复已部署（`bba95b71…`；27 项 + 204 项 PASS；备份 v14 `2f180cf0…`）。
    **PENDING 3 未关闭（真机故障注入未验证）**。
    - 设计与评估：部署脚本整改设计、权限安全专项评估、PENDING 1 测试方案、PENDING 3 验证方案已出（`_deliver/P1-A1-PENDING复审/`），待复审；未施工、未执行。
-   - 脚本整改：v34 独立复审**不通过**（归档 `_deliver/P1-A1-PENDING复审/v34复审结论.md`）；v35 待整改；v35 复审须 Agent Teams 四队友只读审查。
+   - 脚本整改：v34 独立复审**不通过**（归档 `_deliver/P1-A1-PENDING复审/v34复审结论.md`）；v35 设计已出，Agent Teams 四队友独立复审**四人均不通过**（`_deliver/P1-A1-PENDING复审/v35复审报告.md`），建议 v36；未施工。
 6. **PENDING 2（代码块保真归因）→ 已结案（2026-11-22）**：DB msg 37 原始 completion 69 字符、格式完好；
    最终发送 58 字符；style_strip 重放逐字节相等；P1-A1/multi_bubble/AstrBot 排除。
    **归因闭合，不代表 B 修复完成**；B 仍独立待办。
