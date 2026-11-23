@@ -58,6 +58,7 @@ PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确�
 **v42 完整设计（2026-11-23）**：勘误冻结文件（token→latch、W3/W4/W4R、openat 全链、尾修复 256KiB、126s/125s、101/105）后，写 `部署脚本整改设计-v42.md`、`v42测试矩阵.md`（101 族/105 子例，P1–P14/F-* 完整）、`v42目标Linux实验方案.md`（E01–E16+E16e 映射+F-SEAL 10 步）。待独立复审；**实验/施工未授权**。
 **v43 修订（2026-11-23）**：按主人要求修订 K1–K6：F-HALT/W4R epoch 持久化矛盾（epoch 只由 WAL 推进；W4R 仅 T-HALT；F/M-HALT latch-only 22）、main 收养/live_children 证据、orphan token 授权、FRAME 必须 EOF、T3-02/T2-02/T3-18/NOT-SENT 判据；补齐正常启动/安装器/L/M/FD/R0–R5。产出 `v43修订说明.md`、`部署脚本整改设计-v43.md`、`v43测试矩阵.md`、`v43目标Linux实验方案.md`。待复审；**实验/施工未授权**。
 **v43 复审（2026-11-23）**：独立复审**不通过**，建议 v44；报告 `v43复审报告.md`。核心阻断：K2 waitpid/收养判定错误（返回 0/ECHILD 语义）、`/proc/children` 不精确；K1 三种 hold 路径未唯一化（W3/T-HALT/F/M-HALT/observed=false）；P1：HALT epoch、fstatat 无 AT_SYMLINK_NOFOLLOW、A0 门禁 U-01/U-02、T2-02a 注入点、T3-18 夹具、orphan token 合同、时间起点。保留 K4/K5/完整启动/安装器/L/M/FD/R0–R5。未施工、未执行实验。
+**v44 修订（2026-11-24）**：新四队友（a-proc/b-wal/c-auth/d-test）裁定收齐；Lead 冻结 `v44核心裁定.md`+`v44接口冻结与差异裁定.md`（P0-1 waitpid 五分支/observed 三态/T-HALT；P0-2 hold 决策表 P1–P5+W4/W4R；P1：HALT 四字段、fstatat AT_SYMLINK_NOFOLLOW、A0 门禁、T2-02a 注入、T3-18 A/B/C、orphan token、时间起点 126/125）。产出完整设计 `部署脚本整改设计-v44.md`、矩阵 `v44测试矩阵.md`（101 族/105 子例）、实验 `v44目标Linux实验方案.md`。待独立复审；**实验/施工未授权**。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 
