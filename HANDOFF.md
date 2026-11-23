@@ -54,6 +54,7 @@ PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确�
 **v40 设计（2026-11-23）**：主人批准 v40；Agent Teams 新四队友（a-chain/b-fd/c-state/d-test）交付接口合同；Lead 冻结 H1–H12（hold/锁、两次 fork、WAL 写权、CLOEXEC、时间预算、授权）并写完整设计 `部署脚本整改设计-v40.md`、完整矩阵 `v40测试矩阵.md`（101 例）、完整实验方案 `v40目标Linux实验方案.md`（E01–E16）。待 v40 独立复审；**实验/施工未授权**。
 **v41 设计（2026-11-23）**：v40 复审六项 P0（hold/WAL 写权冲突、非子进程死亡证明、W2 重开、error pipe、D0–D9、矩阵错误）；新四队友（a-hold/b-fd/c-state/d-test）交付 v41 差异裁定；Lead 冻结 G1–G10，写 `v41核心裁定.md`、`v41接口差异与冲突裁定.md`、完整设计 `部署脚本整改设计-v41.md`、完整矩阵 `v41测试矩阵.md`（101 族/104 子例）、实验方案 `v41目标Linux实验方案.md`。待 v41 独立复审；**实验/施工未授权**。
 **v41 复审（2026-11-23）**：独立复审**不通过**，建议 v42；报告 `v41复审报告.md`。核心阻断：W3 重开 WAL 追加位置未闭合、audit dirfd 关闭/重开不一致、hold/HOLD_REQ/收尸/W4/token 多套时序、D0–D9 子状态（D5x/D6b/D7b）未落表、P1–P14/F-* 不可独立复现、error pipe/SC0–SC6 枚举未逐项定义。保留 G1–G10 主体。未施工、未执行实验。
+**v42 接口冻结（2026-11-23）**：新四队友 A/B/C/D 交付差异裁定；Lead 二次裁定并冻结 `v42核心裁定.md`（J1–J8）+ `v42接口冻结与差异裁定.md`：token→latch、W4R/epoch5、四种 HALT、W1–W4R 写权唯一、WAL 重开（逐级 openat+O_APPEND+尾修复）与追加证明、D0–D9 15 子状态、error pipe 七态两层、SC0–SC6、N1–N7、101 族/105 子例。下一步：写 v42 完整设计/矩阵/实验；**实验/施工未授权**。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 
