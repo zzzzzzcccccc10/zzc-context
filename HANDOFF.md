@@ -1,4 +1,4 @@
-# 最近交接（2026-11-22）· 新会话接手包
+# 最近交接（2026-11-23）· 新会话接手包
 
 > **新会话启动（固定口令）**：主人说「继续小恋项目，先按 zzc-context 最新 COOPERATION.md 执行上下文启动校验」
 > 时，按 `COOPERATION.md` 第四节执行：先读 HANDOFF → PROJECT_STATUS → COOPERATION → _deliver/README，
@@ -26,7 +26,7 @@
 | P1-A1 v6 | **已部署**（00:02，`bc04462361e418219da8110f28d6b50377834105`）；**P3 failopen 修复已部署（`bba95b71…`）**；PENDING 2 已结案；PENDING 1/3 未关闭 |
 | P1-A2 规范 | **v7 + 第九节 v8 修订 + 第十节 v11 修订**（非法候选隔离） |
 | P1-A2 施工方案 | **v4 + 第十一节 v9 + 第十二节 v10 + 第十三节 v11 修订** |
-| P1-A2 代码施工 | **v14 已部署** @ `91514773b2f04bcb83c20e8a1daaa6cfc359a475`（`p1-a2-v14`）；线上 `2f180cf0…`；**封版（限定验收通过；真实链路最小冒烟通过，有证据边界；非完整 E2E 原文取证）** |
+| P1-A2 代码施工 | **v14 已部署**（历史版本 `2f180cf0…`；当前线上为 P3 修复 `bba95b71…`）@ `91514773b2f04bcb83c20e8a1daaa6cfc359a475`（`p1-a2-v14`）；**封版（限定验收通过；真实链路最小冒烟通过，有证据边界；非完整 E2E 原文取证）** |
 | B 代码块保护 | 独立待办，未开工 |
 | 仓库 | `zzc`（公开，代码/审查材料）、`zzc-context`（公开，档案） |
 
@@ -47,10 +47,11 @@ PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确�
 **v34 复审（2026-11-23）**：v34 独立复审**不通过**，建议 v35；v35 待整改。v35 正式复审须用 **Agent Teams** 四队友（内核/Socket 语义、协议/进程生命周期、Evidence/审计状态机、对抗场景/测试覆盖）只读独立审查，Lead 汇总并标注未验证项；不以多数意见代替技术证明。设计通过≠施工授权。
 **v35 复审（2026-11-23）**：Agent Teams 四队友（a-kernel/b-protocol/c-evidence/d-adversarial）独立审查，**四人均不通过**；汇总结论 v35 不通过、建议 v36；报告 `_deliver/P1-A1-PENDING复审/v35复审报告.md`。核心阻断：SCM_RIGHTS/分帧合同、execve 结果不可观测、放行不可审计、端点继承顺序、evidence 重放/单写者、测试判据缺失。未验证项（需目标 Linux 实验）已列，等主人单独授权。未施工。
 **v36 设计（2026-11-23）**：Agent Teams 四队友按新分工（通信协议/执行确认与进程安全/Evidence 与恢复/实现与测试架构）收集合同，Lead 合并为 `_deliver/P1-A1-PENDING复审/部署脚本整改设计-v36.md`（六项合同）；目标 Linux 实验方案 `v36目标Linux实验方案.md` 已出，**未执行、待主人单独授权**。待独立复审；未施工。
+**v37 复审（2026-11-23）**：v36 复审不通过（启动链/S 继承/WAL-sidecar 等），形成 v37 设计与 `v37目标Linux实验方案.md`；Agent Teams 四队友（a-env/b-proc/c-evidence/d-test）独立复审 v37，**四人均不通过**；报告 `v37复审报告.md`，建议 v38。核心阻断：启动链不可信、launcher 端点持有不可证、gate/exec 判定未闭合、WAL/sidecar 矛盾、正向对照不可执行。未施工、未执行实验。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 
-**当前**：**v14 已部署并通过限定验收**（2026-11-21 22:30，线上 `2f180cf0…`），服务已重启，
+**历史**：**v14 已部署并通过限定验收**（2026-11-21 22:30，历史线上 `2f180cf0…`，现已被 P3 修复 `bba95b71…` 替代），服务已重启，
 插件加载成功、适配器已连接、204 项隔离测试 ALL PASS。
 **真实链路最小冒烟通过（有证据边界）**：观察到清洗器检测条件命中并调用 finalize_text()，最终发送符合预期；
 原始 completion_text 不可得，非完整 E2E 原文取证。结果见 `_deliver/P1-A2-v14-真实QQ冒烟/真实QQ冒烟验收结果.md`；回滚点已备。
@@ -70,7 +71,7 @@ B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计
    `_xml_deletions()` 只保护 DSML 区间；新增 3 项复审回归。
 4. 测试：**32 组 204 项 ALL PASS**（v13 的 201 项保留 + v14 新增 3 项；5KB 5.62ms）。
 5. 提交 `zzc` 分支 `p1-a2-v14`：完整 diff、测试源码、日志、文件 SHA、性能实测，在 `reviews/P1-A2-v14/`。
-6. **已部署、已重启**；线上 `main.py` 为 `2f180cf0…`（v14）；**封版（限定验收通过；真实链路最小冒烟通过，有证据边界；非完整 E2E 原文取证）**。
+6. **历史 v14 已部署、已重启**；当前线上 `main.py` 为 P3 修复 `bba95b71…`（基于 v14；v14 为 `2f180cf0…`）；**封版（限定验收通过；真实链路最小冒烟通过，有证据边界；非完整 E2E 原文取证）**。
 
 ## 五、红线
 
@@ -84,7 +85,7 @@ B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计
 - 服务器：腾讯云 Ubuntu 22.04，SSH 密钥 `default-workspace/.ssh/id_desktop`
 - 容器：`astrbot`（AstrBot v4.29.4）、`snowluma`（OneBot）、`ollama`（bge-m3）
 - 线上插件：`/opt/astrbot/data/plugins`（容器 `/AstrBot/data/plugins`），106 个
-- 当前线上 `tool_xml_guard/main.py`：`2f180cf0…`（v14，2026-11-21 22:30 部署）；`multi_bubble`：`5e2519…`
+- 当前线上 `tool_xml_guard/main.py`：`bba95b71…`（P3 修复，基于 v14）；历史 v14 `2f180cf0…`（2026-11-21 22:30 部署）；`multi_bubble`：`5e2519…`
 - Git：服务器有 `gh`（已浏览器授权，账号 zzzzzzcccccc10），`gh auth setup-git` 已配
 - 测试副本：容器 `/tmp/rbtest_p1a/`
 - 工作区参考：`肥鱼维护手册.md`、`肥鱼优化日志.md`、`插件清单.md`、`小恋-人格与生命设计.md`
