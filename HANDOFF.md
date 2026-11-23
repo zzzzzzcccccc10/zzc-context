@@ -57,6 +57,7 @@ PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确�
 **v42 接口冻结（2026-11-23）**：新四队友 A/B/C/D 交付差异裁定；Lead 二次裁定并冻结 `v42核心裁定.md`（J1–J8）+ `v42接口冻结与差异裁定.md`：token→latch、W4R/epoch5、四种 HALT、W1–W4R 写权唯一、WAL 重开（逐级 openat+O_APPEND+尾修复 256KiB）与追加证明、D0–D9 15 子状态、error pipe 七态两层、SC0–SC6、N1–N7、101 族/105 子例。下一步：写 v42 完整设计/矩阵/实验；**实验/施工未授权**。
 **v42 完整设计（2026-11-23）**：勘误冻结文件（token→latch、W3/W4/W4R、openat 全链、尾修复 256KiB、126s/125s、101/105）后，写 `部署脚本整改设计-v42.md`、`v42测试矩阵.md`（101 族/105 子例，P1–P14/F-* 完整）、`v42目标Linux实验方案.md`（E01–E16+E16e 映射+F-SEAL 10 步）。待独立复审；**实验/施工未授权**。
 **v43 修订（2026-11-23）**：按主人要求修订 K1–K6：F-HALT/W4R epoch 持久化矛盾（epoch 只由 WAL 推进；W4R 仅 T-HALT；F/M-HALT latch-only 22）、main 收养/live_children 证据、orphan token 授权、FRAME 必须 EOF、T3-02/T2-02/T3-18/NOT-SENT 判据；补齐正常启动/安装器/L/M/FD/R0–R5。产出 `v43修订说明.md`、`部署脚本整改设计-v43.md`、`v43测试矩阵.md`、`v43目标Linux实验方案.md`。待复审；**实验/施工未授权**。
+**v43 复审（2026-11-23）**：独立复审**不通过**，建议 v44；报告 `v43复审报告.md`。核心阻断：K2 waitpid/收养判定错误（返回 0/ECHILD 语义）、`/proc/children` 不精确；K1 三种 hold 路径未唯一化（W3/T-HALT/F/M-HALT/observed=false）；P1：HALT epoch、fstatat 无 AT_SYMLINK_NOFOLLOW、A0 门禁 U-01/U-02、T2-02a 注入点、T3-18 夹具、orphan token 合同、时间起点。保留 K4/K5/完整启动/安装器/L/M/FD/R0–R5。未施工、未执行实验。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 
