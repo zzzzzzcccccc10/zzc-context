@@ -49,6 +49,7 @@ PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确�
 **v36 设计（2026-11-23）**：Agent Teams 四队友按新分工（通信协议/执行确认与进程安全/Evidence 与恢复/实现与测试架构）收集合同，Lead 合并为 `_deliver/P1-A1-PENDING复审/部署脚本整改设计-v36.md`（六项合同）；目标 Linux 实验方案 `v36目标Linux实验方案.md` 已出，**未执行、待主人单独授权**。待独立复审；未施工。
 **v37 复审（2026-11-23）**：v36 复审不通过（启动链/S 继承/WAL-sidecar 等），形成 v37 设计与 `v37目标Linux实验方案.md`；Agent Teams 四队友（a-env/b-proc/c-evidence/d-test）独立复审 v37，**四人均不通过**；报告 `v37复审报告.md`，建议 v38。核心阻断：启动链不可信、launcher 端点持有不可证、gate/exec 判定未闭合、WAL/sidecar 矛盾、正向对照不可执行。未施工、未执行实验。
 **v38 复审（2026-11-23）**：v38 三契约设计 + 测试矩阵 + 实验方案已出；Agent Teams 四队友（a-chain/b-fd/c-state/d-matrix）独立复审，**四人均不通过**；报告 `v38复审报告.md`，建议 v39。核心阻断：安装根/状态根未闭合、退出码表缺失、四状态 fd 清单未落地、R08 execve 时点矛盾、migrate/release gate 矛盾、重放前置/顺序、矩阵不可交付（正向对照/变异/授权）。未施工、未执行实验。
+**v39 接口冻结（2026-11-23）**：主人批准 v39 设计阶段；Agent Teams 新四队友（a-chain/b-fd/c-state/d-test）交付接口清单；Lead 裁定 D1–D14（单文件 deploy.py、安装根 /opt/astrbot-deploy、状态根 /var/lib/astrbot-deploy、迁移前置、FD 双集合、hold latch+22/23、时间预算共享 deadline、A0/A1/A2 授权），冻结稿 `v39跨领域接口冻结.md`。下一步：按冻结稿写完整 v39 设计并复审；**实验/施工未授权**。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 
