@@ -78,7 +78,7 @@
 - a 文件成功/WAL 失败→文件权威、允许完成清理、0、audit_missing。
 - c 文件+WAL 均成功→一致、0、清理后文件仍在。
 - d 文件存在/WAL 缺→0、不重写 WAL。
-- e WAL 存在/文件缺→补文件、0、不重写 WAL。
+- e 文件缺 + epoch4 operator_resolution 完整且身份一致→重建、0、不重写 WAL；否则 30、零 WAL 写、零清理、保留现场。
 - f 不一致→30 保现场。
 - g1 create 失败、g2 短写、g3 完整写+fsync EIO、g4 目录 fsync 失败→23、latch 保留、token_untrusted、不写 resolution。
 - h token 失败+latch 失败→hold-live、SIGKILL→9、next 23。
