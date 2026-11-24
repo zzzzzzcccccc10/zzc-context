@@ -75,7 +75,7 @@ PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确�
 **v51 修订（2026-11-24）**：写 `v51修订说明.md`：删除宽泛“补文件”，文件缺失一律服从六行表（仅 epoch4 完整一致可重建）；矩阵加 T3-25n/o/p 正式行（30/零写/零清理/保留）；audit 失败只写 stdout（`audit_record_write_failed`），残留按 `unknown` 不读权威、O_EXCL 不重写、best-effort 归档；计数 **108 族/161 子例**（T3-25 21、T3 70）；T3-22 入口聚合 vs T3-23 逐态细分。待复审；**实验/施工未授权**。
 **v52 复审（2026-11-24）**：独立复审**不通过**，建议 v53；报告 `v52复审报告.md`。P1：audit 完整写+fsync EIO 重启歧义、`.failed`/原文件并存优先级；resolved_at/attempt_hold/halt_seq 来源缺失。P2：dev-ino 对象表不精确。
 **v53 复审（2026-11-24）**：独立复审**不通过**，建议 v54；报告 `v53复审报告.md`。四项：audit 交叉证据两种说法（WAL-only vs WAL-or-resolution）；v53 新增向量未同步实验；逐 ID 归属表未闭合 175；dev-ino 缺操作级校验。
-**v54 修订（2026-11-24）**：写 `v54修订说明.md`：audit 交叉唯一 WAL-only（resolution.json 不作独立证据）；实验补 m3a–d/u/v/w/q1–q4；逐 ID 归属重算 T3-25 32/T3 81/总 **172**（175 作废）；dev-ino 四对象 openat→fstat→fstatat 操作级。待复审；**实验/施工未授权**。
+**v54 修订（2026-11-24）**：写 `v54修订说明.md`：audit 交叉唯一 WAL-only（resolution.json 不作独立证据）；实验补 m3a–d/m4–m7/u/v/w/q1–q4；逐 ID 归属重算 T3-25 35/T3 84/总 **175**；dev-ino 四对象 openat→fstat→fstatat 操作级。待复审；**实验/施工未授权**。
 **v52 修订（2026-11-24）**：写 `v52修订说明.md`：audit 文件只记录 written、失败只 stdout（`audit_record_write_failed`）、残留 unknown 规则入设计；身份来源表入设计 §4（attempt_created/operator_resolution/attempt_hold/halt 必需字段，缺任一→30）；矩阵加 q/r/s/t 字段拒绝；计数 **108 族/165 子例**（T3-25 25、T3 74）；v50 历史口径标注作废；`.failed` 归档不覆盖（RENAME_NOREPLACE/link+unlink，目标存在保留+unknown）。待复审；**实验/施工未授权**。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
