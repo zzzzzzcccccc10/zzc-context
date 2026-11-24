@@ -67,6 +67,8 @@ PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确�
 **v47 修订（2026-11-24）**：写 `v47修订说明.md`：resolution.json **永久保留**为完成态（清理不删）；文件成功/WAL 失败统一 0；T2-05/T2-04 恢复断言；S4 单列、五子态各 live/dead + T3-23 a1/f2；P1-H a/b；P3a/P4a 互斥（HALT 打开成功+写失败 vs 打开/预检失败）；token 形态 create/短写/fsync EIO/目录 fsync；计数 **108 族/147 子例**；日期改 11-24。同步 v46 设计/矩阵/实验。待复审；**实验/施工未授权**。
 **v47 复审（2026-11-24）**：独立复审**不通过**，建议 v48；报告 `v47复审报告.md`。P0：resolution 文件缺失恢复无唯一判据（epoch5 无 WAL 事件不能重建）。P1：S4-dead “22/0”不唯一；P3a/P4a 未入设计/矩阵；wal_audit_missing 无持久位置。P2：计数 145/147 混用、T2 33/30、S4 重复计数。
 **v48 修订（2026-11-24）**：写 `v48修订说明.md`：resolution 缺失六行决策表（文件有效→0；损坏→30；epoch4 WAL 一致→重建；epoch5/无事件→30；身份不符→30）；S4 拆 live/first/recover（f1/f2/f3）；P3a/P4a 注入条件入设计/矩阵（halt_fsync=EIO vs halt_dir=EACCES）；新增 `resolution.audit.json`（present/missing）；计数统一 **108 族/148 子例**、T2 23/30、T3 25/57。待复审；**实验/施工未授权**。
+**v48 复审（2026-11-24）**：独立复审**不通过**，建议 v49；报告 `v48复审报告.md`。P1：S4 三阶段未同步设计/实验；audit 失败语义混淆（audit 写失败≠WAL 缺失）；resolution 六行表缺 A 域死亡证明前置与重建身份来源。P2：计数 145/147/148 混用、T3-25 子例计数不可追溯。
+**v49 修订（2026-11-24）**：写 `v49修订说明.md`：S4 三阶段同步设计/实验（f1/f2/f3）；audit 字段 `wal_audit`+`audit_record` 分离、三失败场景 m1/m2/m3；resolution 六行表加 A 域前置、epoch4 重建身份来源（WAL attempt_created/operator_resolution/attempt_hold）；计数 **108 族/148 子例** + T3 计数归属表（T3-22 12/T3-23 13/T3-24 2/T3-25 9、T3 57）。待复审；**实验/施工未授权**。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 

@@ -64,14 +64,16 @@
 - a2：帧+EOF，supervisor 在 126s 内退出→无 TERM、正常 finalize 22。
 - c：EOF 无帧/截断→t_eof+5 TERM、+6 KILL。
 
-### 5.3 W4R 五子态（S1/S2a/S2b/S3a/S3b）与 S4 单列（live/dead）
+### 5.3 W4R 五子态（S1/S2a/S2b/S3a/S3b）与 S4 三阶段
 
 - 五子态各 live/dead：live→hold-live（无 exit、心跳、SIGKILL→9；next 23）；dead→22 latch-only（basis=latch）。
-- S4（attempt_hold 已持久）单列：live→hold-live；dead→22/0 按 evidence；basis=attempt_hold，不得当 latch。
-- T3-23：a1/a2…f1/f2 逐项断言 WAL 末行/HALT 字段/半行/不补写/退出/basis。
+- S4 三阶段：S4-live（f1）→hold-live；S4-first（f2，无活体 observed=true、首次错误返回、未写 resolution）→22，basis=attempt_hold；S4-recover（f3，同现场后续 recover，A 域死亡证明通过）→写 resolution（epoch5 文件）+audit+清理→0。
+- T3-23：a1/a2…e1/e2、f1/f2/f3 逐项断言 WAL 末行/HALT 字段/半行/不补写/退出/basis。
 - 不补 takeover5/attempt_hold；S3a 首次不截断。
 
 ### 5.4 resolution 双写（T3-25）
+
+- 前置：A 域死亡证明（launcher/CLI/live_children 全死）通过；有活体/不可观测→hold-live，不进入本表。
 
 - a 文件成功/WAL 失败→文件权威、允许完成清理、0、audit_missing。
 - c 文件+WAL 均成功→一致、0、清理后文件仍在。
@@ -84,7 +86,9 @@
 - j epoch5 文件缺、WAL 无事件→30 保现场；不重建。
 - k 文件损坏/字段不符→30；不覆盖。
 - l WAL 事件存在但身份不符→30；不重建。
-- m audit 写失败→仍 0；stdout 标注 wal_audit_missing。
+- m1 WAL present + audit 写失败→0、stdout `audit_record_write_failed`（不得报 wal_audit_missing）。
+- m2 WAL missing + audit 写失败→0、stdout `wal_audit_missing`+`audit_record_write_failed`。
+- m3 audit 短写/fsync EIO/目录 fsync 失败→0、audit_record=write_failed、残留文件不读为权威、不覆盖 resolution。
 - audit 文件：resolution.json 成功后写 `resolution.audit.json`（present/missing）；不参与 resolved；清理不删。
 
 ### 5.5 P3a/P4a/P1-H
