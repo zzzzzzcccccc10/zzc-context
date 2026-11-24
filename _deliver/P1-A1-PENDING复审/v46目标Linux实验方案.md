@@ -88,10 +88,14 @@
 - l WAL 事件存在但身份不符→30；不重建。
 - m1 WAL present + audit 写失败→0、stdout `audit_record_write_failed`（不得报 wal_audit_missing）。
 - m2 WAL missing + audit 写失败→0、stdout `wal_audit_missing`+`audit_record_write_failed`。
-- m3 audit 短写/fsync EIO/目录 fsync 失败→0、audit_record=write_failed、残留文件不读为权威、不覆盖 resolution。
-- n 非 epoch4（epoch5/epoch3）→30 零清理。
-- o 事件不完整（缺 basis/anchor/token_sha256/latch_ino）→30。
-- p 身份字段不符（token_sha256/latch_ino/attempt_id）→30。
+- m3 audit 短写/fsync EIO/目录 fsync 失败→stdout `audit_record_write_failed`、残留 unknown、仍 0、不覆盖 resolution、不阻塞完成。
+- n 非 epoch4→30、零 WAL 写、零清理、token/latch/HALT 保留。
+- o 事件不完整（缺 basis/anchor/token_sha256/latch_ino）→30、零 WAL 写、零清理、保留。
+- p 身份字段不符（token_sha256/latch_ino/attempt_id）→30、零 WAL 写、零清理、保留。
+- q 缺 attempt_id/boot_id/dev-ino→30、零写、零清理、保留。
+- r 缺 authority_seq/anchor→30、零写、零清理、保留。
+- s 缺 observed/spawn_state→30、零写、零清理、保留。
+- t 文件交叉不符→30、零写、零清理、保留。
 - audit 文件：resolution.json 成功后写 `resolution.audit.json`（present/missing）；不参与 resolved；清理不删。
 
 ### 5.5 P3a/P4a/P1-H
