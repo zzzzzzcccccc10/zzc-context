@@ -64,31 +64,30 @@
 - a2：帧+EOF，supervisor 在 126s 内退出→无 TERM、正常 finalize 22。
 - c：EOF 无帧/截断→t_eof+5 TERM、+6 KILL。
 
-### 5.3 T3-22 W4R 六子态（live/dead）
+### 5.3 W4R 五子态（S1/S2a/S2b/S3a/S3b）与 S4 单列（live/dead）
 
-- c/d/e 各 live/dead：
-  - live：W4R 失败后重新观测有活体/不可观测→hold-live（无 exit、心跳、SIGKILL→9；next 23）。
-  - dead：重新观测无活体 observed=true→22 latch-only（basis=latch）。
-- f：S4 attempt_hold 已持久→basis=attempt_hold；22/0 按证据。
-- T3-23：六子态 WAL 末行/HALT 字段/半行/不补写断言（与 T3-22 对应）。
+- 五子态各 live/dead：live→hold-live（无 exit、心跳、SIGKILL→9；next 23）；dead→22 latch-only（basis=latch）。
+- S4（attempt_hold 已持久）单列：live→hold-live；dead→22/0 按 evidence；basis=attempt_hold，不得当 latch。
+- T3-23：a1/a2…f1/f2 逐项断言 WAL 末行/HALT 字段/半行/不补写/退出/basis。
 - 不补 takeover5/attempt_hold；S3a 首次不截断。
 
 ### 5.4 resolution 双写（T3-25）
 
-- a 文件成功/WAL 失败→文件权威、0、audit_missing。
-- b 文件失败→30/23、WAL 不写。
-- c 文件+WAL 均成功→一致、0。
+- a 文件成功/WAL 失败→文件权威、允许完成清理、0、audit_missing。
+- c 文件+WAL 均成功→一致、0、清理后文件仍在。
 - d 文件存在/WAL 缺→0、不重写 WAL。
 - e WAL 存在/文件缺→补文件、0、不重写 WAL。
 - f 不一致→30 保现场。
-- g token 失败+latch 成功→23、latch 保留、不写 resolution。
+- g1 create 失败、g2 短写、g3 完整写+fsync EIO、g4 目录 fsync 失败→23、latch 保留、token_untrusted、不写 resolution。
 - h token 失败+latch 失败→hold-live、SIGKILL→9、next 23。
+- i 正常清理后 resolution.json 仍在→resolved=true；再次 recover 幂等 0。
 
 ### 5.5 P3a/P4a/P1-H
 
 - P3a（T2-22a）：HALT 失败、token+latch 成功→22 latch-only、无 HALT、basis=latch。
 - P4a（T2-22b）：WAL/HALT 均不可用、latch 成功→22 latch-only、basis=latch。
-- P1-H（T3-24）：attempt_hold 失败→22 latch-only、WAL 末 takeover(3)、半行留待下次。
+- P1-H（T3-24a/b）：a 半行→22 latch-only、WAL 末 takeover(3)、basis=latch；b 完整写+fsync EIO→重启按 S4、basis=attempt_hold。
+- P3a（HALT 打开成功+写失败）与 P4a（HALT 打开/预检失败）注入不同，互斥。
 
 ## 六、清理/隔离（继承 v45）
 

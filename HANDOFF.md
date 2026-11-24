@@ -1,4 +1,4 @@
-# 最近交接（2026-11-23）· 新会话接手包
+# 最近交接（2026-11-24）· 新会话接手包
 
 > **新会话启动（固定口令）**：主人说「继续小恋项目，先按 zzc-context 最新 COOPERATION.md 执行上下文启动校验」
 > 时，按 `COOPERATION.md` 第四节执行：先读 HANDOFF → PROJECT_STATUS → COOPERATION → _deliver/README，
@@ -63,6 +63,8 @@ PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确�
 **v45 修订（2026-11-24）**：写 `v45修订说明.md`：hold 状态机唯一表（先活体后写权；有活体只 P2 或 hold-live；P3/P4a 限无活体 observed=true）；W4R 失败 S1/S2/S3 + recover basis=latch；T_REAP 统一 T-HALT/22；PID 发布协议（WAL spawned/cli_spawned + main 独立验证）；orphan token 唯一 schema；T_SUP_EXIT_FRAMED 合法帧含 EOF；T2-02a 注入语义（stub 首次 EIO/第二次真实 fsync）；跨文档一致性表。待完整 v45 设计/矩阵/实验；**实验/施工未授权**。
 **v45 完整交付（2026-11-24）**：新四队友（a-proc/b-wal/c-hold/d-test）独立分析，发现并裁定跨域冲突：hold-live/latch 失败优先、W4R S1/S2a/S2b/S3a/S3b/S4、resolution.json 载体、resolved/anchor 派生、cli_spawned 发布时序、spawn_closed/observed、pidfd POLLHUP≥6.9、T_SUP 起点穷尽、T3-22 故障向量、103 族/113 子例。产出 `v45核心裁定.md`、`v45接口冻结与差异裁定.md`（含修订追踪表）、`部署脚本整改设计-v45.md`、`v45测试矩阵.md`、`v45目标Linux实验方案.md`。待独立复审；**实验/施工未授权**。
 **v46 修订（2026-11-24）**：按 v45 待审意见修五项：spawn_closed/cli_spawn_failure（failure 合法终止）、T2-21a 计时（t_eof 起 126s；早退分支 a2）、W4R 六子态 live/dead 与 hold-live 优先级（T3-22c/d/e 拆 live/dead）、resolution 双写原子性（文件先/WAL 后/文件权威/文件最后删）、P3a/P4a/P1-H/token 失败测试映射（T2-22/T3-24/T3-25）。计数 108 族/145 子例（不删旧）。产出 `v46修订说明.md`、`部署脚本整改设计-v46.md`、`v46测试矩阵.md`、`v46目标Linux实验方案.md`。待复审；**实验/施工未授权**。
+**v46 复审（2026-11-24）**：独立复审**不通过**，建议 v47；报告 `v46复审报告.md`。P0：resolution.json 删除后完成态丢失；文件成功/WAL 失败“保留现场 vs exit 0”矛盾；T2-05 丢失 cli_spawn_failure+resolution 断言。P1：S4 分类/12 出口、P1-H fsync EIO 完整重放、P3a/P4a 重叠、token 持久化失败形态。P2：计数 108/145、T2-21a2 唯一、日期。
+**v47 修订（2026-11-24）**：写 `v47修订说明.md`：resolution.json **永久保留**为完成态（清理不删）；文件成功/WAL 失败统一 0；T2-05/T2-04 恢复断言；S4 单列、五子态各 live/dead + T3-23 a1/f2；P1-H a/b；P3a/P4a 互斥（HALT 打开成功+写失败 vs 打开/预检失败）；token 形态 create/短写/fsync EIO/目录 fsync；计数 **108 族/147 子例**；日期改 11-24。同步 v46 设计/矩阵/实验。待复审；**实验/施工未授权**。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 
