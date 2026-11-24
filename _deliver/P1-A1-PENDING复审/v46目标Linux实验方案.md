@@ -88,7 +88,10 @@
 - l WAL 事件存在但身份不符→30；不重建。
 - m1 WAL present + audit 写失败→0、stdout `audit_record_write_failed`（不得报 wal_audit_missing）。
 - m2 WAL missing + audit 写失败→0、stdout `wal_audit_missing`+`audit_record_write_failed`。
-- m3 audit 短写/fsync EIO/目录 fsync 失败→stdout `audit_record_write_failed`、残留 unknown、仍 0、不覆盖 resolution、不阻塞完成。
+- m3 总述：audit 短写/fsync EIO/目录 fsync 失败→stdout `audit_record_write_failed`、残留 unknown、仍 0、不覆盖 resolution、不阻塞完成。
+- m3a 完整写+fsync(file) EIO→重启 unknown（有 WAL epoch4→present）；m3b fsync(dir) EIO→unknown；m3c .failed 与原文件并存→unknown；m3d link 成功 unlink 失败→unknown。
+- u 缺 resolved_at→30；v 缺 attempt_hold→30；w halt 缺 halt_seq→30；q1–q4 四组 dev-ino 各缺/不符→30；均零 WAL 写、零清理、保留现场。
+- dev-ino 操作级：openat(O_DIRECTORY|O_NOFOLLOW|O_CLOEXEC)→fstat(fd) 取 dev/ino→与 attempt_created 锚点比对→fstatat(AT_SYMLINK_NOFOLLOW) 与 fstat 一致；WAL 用 fstat(fd)+fstatat(audit_fd,name)；失败→30。
 - n 非 epoch4→30、零 WAL 写、零清理、token/latch/HALT 保留。
 - o 事件不完整（缺 basis/anchor/token_sha256/latch_ino）→30、零 WAL 写、零清理、保留。
 - p 身份字段不符（token_sha256/latch_ino/attempt_id）→30、零 WAL 写、零清理、保留。
