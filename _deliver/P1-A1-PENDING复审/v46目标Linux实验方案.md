@@ -89,16 +89,17 @@
 - m1 WAL present + audit 写失败→0、stdout `audit_record_write_failed`（不得报 wal_audit_missing）。
 - m2 WAL missing + audit 写失败→0、stdout `wal_audit_missing`+`audit_record_write_failed`。
 - m3a1 完整写+fsync(file) EIO，重启后文件完整+WAL epoch4 一致→present（0）。
-- m3a2 同注入，重启无 WAL epoch4→unknown（0）。
+- m3a2 仅 fsync(file) EIO，重启无 WAL epoch4→unknown（0）。
+- m3b fsync(dir) EIO→unknown（0）。
 - m3b fsync(dir) EIO→重启 unknown（0）。
 - m3c `.failed` 与原文件并存→unknown（0）。
 - m3d link 成功 unlink 失败→unknown（0）。
 - m4 注入 WAL 内容校验失败（非 open/read 错误）→重启 unknown、0、不覆盖 resolution、零清理。
 - m5 注入 `renameat2(RENAME_NOREPLACE)` EEXIST→unknown、不覆盖既有 `.failed`、原文件不读 written、0。
-- m6 注入归档 link/unlink 失败（errno=ENOSPC）、无 `.failed`→unknown、原文件保留、不误认 written、0。
+- m6 注入 `linkat(...)→ENOSPC`（归档未建立）→unknown、原文件保留、不误认 written、0；`m6b ≡ m3d`（link 成功+unlink 失败，历史别名，不新增向量）。
 - m7 篡改 audit.attempt_id≠attempt_created→unknown、0、不覆盖 resolution。
 - 以上 0 类均 WAL 不写、不清理、保留现场；重启边界=注入后重新执行 status/recover。
-- u 缺 resolved_at→30；v 缺 attempt_hold→30；w halt 缺 halt_seq→30；q1–q5 五对象 dev-ino 各缺/不符→30；均零 WAL 写、零清理、保留现场。
+- u 缺 resolved_at→30；v 缺 attempt_hold→30；w halt 缺 halt_seq→30；q1–q5 五对象 dev-ino 各缺/不符→30（q1=state_root、q2=run、q3=attempt、q4=audit、q5=WAL）；均零 WAL 写、零清理、保留现场。
 - dev-ino 链：`/`→var→lib→astrbot-deploy→run→<id>→audit→WAL，每级 openat(O_DIRECTORY|O_NOFOLLOW)+fstat 锚点；WAL 用 audit_dir_fd+basename fstatat；失败→30。
 - n 非 epoch4→30、零写/零清理/保留；o 事件不完整（缺 basis/anchor/token_sha256/latch_ino）→30、零写/零清理/保留；p 身份不符→30、零写/零清理/保留。
 - audit 文件：resolution.json 成功后写 `resolution.audit.json`（present/missing）；不参与 resolved；清理不删。

@@ -81,6 +81,9 @@ PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确�
 **v55 修订（2026-11-24）**：写 `v55修订说明.md`：audit 方案 B（写入 EIO→当次 unknown；重启验证可转 present）；实验补 m4–m7；计数 175；dev-ino 逐组件。待复审；**实验/施工未授权**。
 **v55 复审（2026-11-24）**：独立复审**不通过**，建议 v56；报告 `v55复审报告.md`。P1：计数实际 176（m3b 独立、q1–q4 重复）；实验残留旧 q/r/s/t 与旧 m3a；state_root 未从 `/` 逐组件；P2：五对象锚映射、m4–m7 注入细节、HANDOFF/PROJECT_STATUS 未同步。
 **v56 修订（2026-11-24）**：写 `v56修订说明.md`：计数 176（T3-25 36/T3 85）；实验按正式矩阵重写（删旧 q/r/s/t/旧 m3a，补 m4–m7 注入细节）；state_root 从 `/`→var→lib→astrbot-deploy 逐组件；五对象锚表；HANDOFF/PROJECT_STATUS 同步。待复审；**实验/施工未授权**。
+**v57 修订（2026-11-24）**：写 `v57修订说明.md`：五对象 q1–q5、归属 37、总 177；设计补路径链/五锚/attempt_created 字段；目录重核验；m4 命名、m6 语义。待复审；**实验/施工未授权**。
+**v57 复审（2026-11-24）**：独立复审**不通过**，建议 v58；报告 `v57复审报告.md`。P1：m3a2 与 m3b 故障重叠；m6b 未入矩阵且与 m3d 重复；目录“三者一致”逻辑错误（父/子 inode 本就不同）。P2：m4 命名未同步、q1–q5 映射未入正文、PROJECT_STATUS 未更新。
+**v58 修订（2026-11-24）**：写 `v58修订说明.md`：m3a1 file EIO→present、m3a2 仅 file EIO→unknown、m3b dir EIO→unknown；m6b≡m3d 别名不计数；目录比较公式改为父锚点/子名解析/子锚三段；m4 改名 WAL 内容校验失败；q1–q5 映射入正文；交接同步。待复审；**实验/施工未授权**。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 
