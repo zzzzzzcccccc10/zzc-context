@@ -84,6 +84,8 @@ PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确�
 **v57 修订（2026-11-24）**：写 `v57修订说明.md`：五对象 q1–q5、归属 37、总 177；设计补路径链/五锚/attempt_created 字段；目录重核验；m4 命名、m6 语义。待复审；**实验/施工未授权**。
 **v57 复审（2026-11-24）**：独立复审**不通过**，建议 v58；报告 `v57复审报告.md`。P1：m3a2 与 m3b 故障重叠；m6b 未入矩阵且与 m3d 重复；目录“三者一致”逻辑错误（父/子 inode 本就不同）。P2：m4 命名未同步、q1–q5 映射未入正文、PROJECT_STATUS 未更新。
 **v58 修订（2026-11-24）**：写 `v58修订说明.md`：m3a1 file EIO→present、m3a2 仅 file EIO→unknown、m3b dir EIO→unknown；m6b≡m3d 别名不计数；目录比较公式改为父锚点/子名解析/子锚三段；m4 改名 WAL 内容校验失败；q1–q5 映射入正文；交接同步。待复审；**实验/施工未授权**。
+**v58 复审（2026-11-24）**：独立复审**不通过**，建议 v59；报告 `v58复审报告.md`。P1：WAL 文件核验（q5）未闭合；m3b 与 WAL-only 冲突；m6/m3d 矩阵未区分；信任基线缺 other-write。P2：q 未逐项、T3 标题 74、m4 措辞、实验 m3b 重复。
+**v59 修订（2026-11-24）**：写 `v59修订说明.md`：WAL 文件核验（O_RDONLY|O_NOFOLLOW+fstat+fstatat+q5 锚）；m3b 重启判定服从 WAL-only（缺证据 unknown、证据全 present）；m6 linkat→ENOSPC 与 m3d 矩阵区分；信任基线禁 group+other 写；q1–q5 逐项、T3 标题 86。待复审；**实验/施工未授权**。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 

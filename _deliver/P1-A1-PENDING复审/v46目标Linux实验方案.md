@@ -90,7 +90,7 @@
 - m2 WAL missing + audit 写失败→0、stdout `wal_audit_missing`+`audit_record_write_failed`。
 - m3a1 完整写+fsync(file) EIO，重启后文件完整+WAL epoch4 一致→present（0）。
 - m3a2 仅 fsync(file) EIO，重启无 WAL epoch4→unknown（0）。
-- m3b fsync(dir) EIO→unknown（0）。
+- m3b fsync(dir) EIO；重启后 audit 缺失/校验失败或 WAL epoch4 缺失→unknown（0）；若 audit 完整+WAL epoch4 完整一致→present。
 - m3b fsync(dir) EIO→重启 unknown（0）。
 - m3c `.failed` 与原文件并存→unknown（0）。
 - m3d link 成功 unlink 失败→unknown（0）。
