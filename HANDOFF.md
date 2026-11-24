@@ -69,6 +69,8 @@ PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确�
 **v48 修订（2026-11-24）**：写 `v48修订说明.md`：resolution 缺失六行决策表（文件有效→0；损坏→30；epoch4 WAL 一致→重建；epoch5/无事件→30；身份不符→30）；S4 拆 live/first/recover（f1/f2/f3）；P3a/P4a 注入条件入设计/矩阵（halt_fsync=EIO vs halt_dir=EACCES）；新增 `resolution.audit.json`（present/missing）；计数统一 **108 族/148 子例**、T2 23/30、T3 25/57。待复审；**实验/施工未授权**。
 **v48 复审（2026-11-24）**：独立复审**不通过**，建议 v49；报告 `v48复审报告.md`。P1：S4 三阶段未同步设计/实验；audit 失败语义混淆（audit 写失败≠WAL 缺失）；resolution 六行表缺 A 域死亡证明前置与重建身份来源。P2：计数 145/147/148 混用、T3-25 子例计数不可追溯。
 **v49 修订（2026-11-24）**：写 `v49修订说明.md`：S4 三阶段同步设计/实验（f1/f2/f3）；audit 字段 `wal_audit`+`audit_record` 分离、三失败场景 m1/m2/m3；resolution 六行表加 A 域前置、epoch4 重建身份来源（WAL attempt_created/operator_resolution/attempt_hold）；计数 **108 族/148 子例** + T3 计数归属表（T3-22 12/T3-23 13/T3-24 2/T3-25 9、T3 57）。待复审；**实验/施工未授权**。
+**v49 复审（2026-11-24）**：独立复审**不通过**，建议 v50；报告 `v49复审报告.md`。P0：六行决策表未入设计 §4/矩阵 T3-25e（仍写“WAL 存在/文件缺→补文件”）。P1：设计 schema 缺 `audit_record`、矩阵 T3-25m 仍旧语义。P2：T3-22/T3-23 重复覆盖、T3-25 16 ID 计数不可追溯。
+**v50 修订（2026-11-24）**：写 `v50修订说明.md`：六行表写入设计 §4（唯一恢复规则；非 epoch4/不完整/身份缺失→30 零清理）；T3-25e 严格化并加 n/o/p；schema 加 `audit_record`、T3-25m 拆 m1/m2/m3；逐 ID 归属清单（T3-22 8/T3-23 13/T3-24 2/T3-25 16），计数 **108 族/156 子例**（148 归并口径作废）。待复审；**实验/施工未授权**。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 
