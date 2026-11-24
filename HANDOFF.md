@@ -77,6 +77,10 @@ PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确�
 **v53 复审（2026-11-24）**：独立复审**不通过**，建议 v54；报告 `v53复审报告.md`。四项：audit 交叉证据两种说法（WAL-only vs WAL-or-resolution）；v53 新增向量未同步实验；逐 ID 归属表未闭合 175；dev-ino 缺操作级校验。
 **v54 修订（2026-11-24）**：写 `v54修订说明.md`：audit 交叉唯一 WAL-only（resolution.json 不作独立证据）；实验补 m3a–d/m4–m7/u/v/w/q1–q4；逐 ID 归属重算 T3-25 35/T3 84/总 **175**；dev-ino 四对象 openat→fstat→fstatat 操作级。待复审；**实验/施工未授权**。
 **v52 修订（2026-11-24）**：写 `v52修订说明.md`：audit 文件只记录 written、失败只 stdout（`audit_record_write_failed`）、残留 unknown 规则入设计；身份来源表入设计 §4（attempt_created/operator_resolution/attempt_hold/halt 必需字段，缺任一→30）；矩阵加 q/r/s/t 字段拒绝；计数 **108 族/165 子例**（T3-25 25、T3 74）；v50 历史口径标注作废；`.failed` 归档不覆盖（RENAME_NOREPLACE/link+unlink，目标存在保留+unknown）。待复审；**实验/施工未授权**。
+**v54 复审（2026-11-24）**：独立复审**不通过**，建议 v55；报告 `v54复审报告.md`。P1：audit fsync 状态不唯一；实验缺 m4–m7；`run/<id>` 中间符号链接；P2：175 不闭合；v54 历史口径未隔离。
+**v55 修订（2026-11-24）**：写 `v55修订说明.md`：audit 方案 B（写入 EIO→当次 unknown；重启验证可转 present）；实验补 m4–m7；计数 175；dev-ino 逐组件。待复审；**实验/施工未授权**。
+**v55 复审（2026-11-24）**：独立复审**不通过**，建议 v56；报告 `v55复审报告.md`。P1：计数实际 176（m3b 独立、q1–q4 重复）；实验残留旧 q/r/s/t 与旧 m3a；state_root 未从 `/` 逐组件；P2：五对象锚映射、m4–m7 注入细节、HANDOFF/PROJECT_STATUS 未同步。
+**v56 修订（2026-11-24）**：写 `v56修订说明.md`：计数 176（T3-25 36/T3 85）；实验按正式矩阵重写（删旧 q/r/s/t/旧 m3a，补 m4–m7 注入细节）；state_root 从 `/`→var→lib→astrbot-deploy 逐组件；五对象锚表；HANDOFF/PROJECT_STATUS 同步。待复审；**实验/施工未授权**。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 

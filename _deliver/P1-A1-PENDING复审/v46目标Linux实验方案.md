@@ -88,23 +88,19 @@
 - l WAL 事件存在但身份不符→30；不重建。
 - m1 WAL present + audit 写失败→0、stdout `audit_record_write_failed`（不得报 wal_audit_missing）。
 - m2 WAL missing + audit 写失败→0、stdout `wal_audit_missing`+`audit_record_write_failed`。
-- m3a 总述：完整写+fsync(file/dir) EIO→当次 unknown；重启后文件完整+WAL epoch4 一致→present，否则 unknown。
-- m3a1 present 分支（0）；m3a2 unknown 分支（0）。
-- m4 audit 合法、WAL 不可读→unknown、0、不覆盖 resolution、零清理。
-- m5 `.failed` 归档目标已存在→unknown、不覆盖、原文件不读 written、0。
-- m6 归档失败无 `.failed`→unknown、不误认 written、保留原文件、0。
-- m7 audit 合法但 attempt_id 不符→unknown、0、不覆盖 resolution。
-- 以上 0 类均 WAL 不写、不清理、保留现场。
-- m3a 完整写+fsync(file) EIO→重启 unknown（有 WAL epoch4→present）；m3b fsync(dir) EIO→unknown；m3c .failed 与原文件并存→unknown；m3d link 成功 unlink 失败→unknown。
+- m3a1 完整写+fsync(file) EIO，重启后文件完整+WAL epoch4 一致→present（0）。
+- m3a2 同注入，重启无 WAL epoch4→unknown（0）。
+- m3b fsync(dir) EIO→重启 unknown（0）。
+- m3c `.failed` 与原文件并存→unknown（0）。
+- m3d link 成功 unlink 失败→unknown（0）。
+- m4 注入 WAL 内容校验失败（非 open/read 错误）→重启 unknown、0、不覆盖 resolution、零清理。
+- m5 注入 `renameat2(RENAME_NOREPLACE)` EEXIST→unknown、不覆盖既有 `.failed`、原文件不读 written、0。
+- m6 注入归档 link/unlink 失败（errno=ENOSPC）、无 `.failed`→unknown、原文件保留、不误认 written、0。
+- m7 篡改 audit.attempt_id≠attempt_created→unknown、0、不覆盖 resolution。
+- 以上 0 类均 WAL 不写、不清理、保留现场；重启边界=注入后重新执行 status/recover。
 - u 缺 resolved_at→30；v 缺 attempt_hold→30；w halt 缺 halt_seq→30；q1–q4 四组 dev-ino 各缺/不符→30；均零 WAL 写、零清理、保留现场。
-- dev-ino 操作级：openat(O_DIRECTORY|O_NOFOLLOW|O_CLOEXEC)→fstat(fd) 取 dev/ino→与 attempt_created 锚点比对→fstatat(AT_SYMLINK_NOFOLLOW) 与 fstat 一致；WAL 用 fstat(fd)+fstatat(audit_fd,name)；失败→30。
-- n 非 epoch4→30、零 WAL 写、零清理、token/latch/HALT 保留。
-- o 事件不完整（缺 basis/anchor/token_sha256/latch_ino）→30、零 WAL 写、零清理、保留。
-- p 身份字段不符（token_sha256/latch_ino/attempt_id）→30、零 WAL 写、零清理、保留。
-- q 缺 attempt_id/boot_id/dev-ino→30、零写、零清理、保留。
-- r 缺 authority_seq/anchor→30、零写、零清理、保留。
-- s 缺 observed/spawn_state→30、零写、零清理、保留。
-- t 文件交叉不符→30、零写、零清理、保留。
+- dev-ino 链：`/`→var→lib→astrbot-deploy→run→<id>→audit→WAL，每级 openat(O_DIRECTORY|O_NOFOLLOW)+fstat 锚点；WAL 用 audit_dir_fd+basename fstatat；失败→30。
+- n 非 epoch4→30、零写/零清理/保留；o 事件不完整（缺 basis/anchor/token_sha256/latch_ino）→30、零写/零清理/保留；p 身份不符→30、零写/零清理/保留。
 - audit 文件：resolution.json 成功后写 `resolution.audit.json`（present/missing）；不参与 resolved；清理不删。
 
 ### 5.5 P3a/P4a/P1-H
