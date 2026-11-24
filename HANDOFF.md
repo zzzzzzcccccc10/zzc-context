@@ -65,6 +65,8 @@ PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确�
 **v46 修订（2026-11-24）**：按 v45 待审意见修五项：spawn_closed/cli_spawn_failure（failure 合法终止）、T2-21a 计时（t_eof 起 126s；早退分支 a2）、W4R 六子态 live/dead 与 hold-live 优先级（T3-22c/d/e 拆 live/dead）、resolution 双写原子性（文件先/WAL 后/文件权威/文件最后删）、P3a/P4a/P1-H/token 失败测试映射（T2-22/T3-24/T3-25）。计数 108 族/145 子例（不删旧）。产出 `v46修订说明.md`、`部署脚本整改设计-v46.md`、`v46测试矩阵.md`、`v46目标Linux实验方案.md`。待复审；**实验/施工未授权**。
 **v46 复审（2026-11-24）**：独立复审**不通过**，建议 v47；报告 `v46复审报告.md`。P0：resolution.json 删除后完成态丢失；文件成功/WAL 失败“保留现场 vs exit 0”矛盾；T2-05 丢失 cli_spawn_failure+resolution 断言。P1：S4 分类/12 出口、P1-H fsync EIO 完整重放、P3a/P4a 重叠、token 持久化失败形态。P2：计数 108/145、T2-21a2 唯一、日期。
 **v47 修订（2026-11-24）**：写 `v47修订说明.md`：resolution.json **永久保留**为完成态（清理不删）；文件成功/WAL 失败统一 0；T2-05/T2-04 恢复断言；S4 单列、五子态各 live/dead + T3-23 a1/f2；P1-H a/b；P3a/P4a 互斥（HALT 打开成功+写失败 vs 打开/预检失败）；token 形态 create/短写/fsync EIO/目录 fsync；计数 **108 族/147 子例**；日期改 11-24。同步 v46 设计/矩阵/实验。待复审；**实验/施工未授权**。
+**v47 复审（2026-11-24）**：独立复审**不通过**，建议 v48；报告 `v47复审报告.md`。P0：resolution 文件缺失恢复无唯一判据（epoch5 无 WAL 事件不能重建）。P1：S4-dead “22/0”不唯一；P3a/P4a 未入设计/矩阵；wal_audit_missing 无持久位置。P2：计数 145/147 混用、T2 33/30、S4 重复计数。
+**v48 修订（2026-11-24）**：写 `v48修订说明.md`：resolution 缺失六行决策表（文件有效→0；损坏→30；epoch4 WAL 一致→重建；epoch5/无事件→30；身份不符→30）；S4 拆 live/first/recover（f1/f2/f3）；P3a/P4a 注入条件入设计/矩阵（halt_fsync=EIO vs halt_dir=EACCES）；新增 `resolution.audit.json`（present/missing）；计数统一 **108 族/148 子例**、T2 23/30、T3 25/57。待复审；**实验/施工未授权**。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 

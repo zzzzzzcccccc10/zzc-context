@@ -81,13 +81,18 @@
 - g1 create 失败、g2 短写、g3 完整写+fsync EIO、g4 目录 fsync 失败→23、latch 保留、token_untrusted、不写 resolution。
 - h token 失败+latch 失败→hold-live、SIGKILL→9、next 23。
 - i 正常清理后 resolution.json 仍在→resolved=true；再次 recover 幂等 0。
+- j epoch5 文件缺、WAL 无事件→30 保现场；不重建。
+- k 文件损坏/字段不符→30；不覆盖。
+- l WAL 事件存在但身份不符→30；不重建。
+- m audit 写失败→仍 0；stdout 标注 wal_audit_missing。
+- audit 文件：resolution.json 成功后写 `resolution.audit.json`（present/missing）；不参与 resolved；清理不删。
 
 ### 5.5 P3a/P4a/P1-H
 
 - P3a（T2-22a）：HALT 失败、token+latch 成功→22 latch-only、无 HALT、basis=latch。
 - P4a（T2-22b）：WAL/HALT 均不可用、latch 成功→22 latch-only、basis=latch。
 - P1-H（T3-24a/b）：a 半行→22 latch-only、WAL 末 takeover(3)、basis=latch；b 完整写+fsync EIO→重启按 S4、basis=attempt_hold。
-- P3a（HALT 打开成功+写失败）与 P4a（HALT 打开/预检失败）注入不同，互斥。
+- P3a（`halt_fsync=EIO`，open 成功+写失败）与 P4a（`halt_dir=EACCES`，open/预检失败、未尝试写）注入不同，互斥。
 
 ## 六、清理/隔离（继承 v45）
 
