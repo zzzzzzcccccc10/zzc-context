@@ -62,6 +62,7 @@ PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确�
 **v44 复审（2026-11-24）**：独立复审**不通过**，建议 v45；报告 `v44复审报告.md`。P0：hold-live 未入唯一选择顺序；W4R 失败恢复未闭合（takeover 未落盘/已落盘无 attempt_hold）；核心裁定 T_REAP 仍写 M-HALT/23 与冻结冲突。P1：PID 权威来源未定义；orphan token 三文档 schema 不一致；T_SUP_EXIT_FRAMED 起点文字冲突；T2-02a 注入语义未写明。保留 waitpid/observed/fstatat/A0 门禁/T3-18/FRAME/101-105。未施工、未执行实验。
 **v45 修订（2026-11-24）**：写 `v45修订说明.md`：hold 状态机唯一表（先活体后写权；有活体只 P2 或 hold-live；P3/P4a 限无活体 observed=true）；W4R 失败 S1/S2/S3 + recover basis=latch；T_REAP 统一 T-HALT/22；PID 发布协议（WAL spawned/cli_spawned + main 独立验证）；orphan token 唯一 schema；T_SUP_EXIT_FRAMED 合法帧含 EOF；T2-02a 注入语义（stub 首次 EIO/第二次真实 fsync）；跨文档一致性表。待完整 v45 设计/矩阵/实验；**实验/施工未授权**。
 **v45 完整交付（2026-11-24）**：新四队友（a-proc/b-wal/c-hold/d-test）独立分析，发现并裁定跨域冲突：hold-live/latch 失败优先、W4R S1/S2a/S2b/S3a/S3b/S4、resolution.json 载体、resolved/anchor 派生、cli_spawned 发布时序、spawn_closed/observed、pidfd POLLHUP≥6.9、T_SUP 起点穷尽、T3-22 故障向量、103 族/113 子例。产出 `v45核心裁定.md`、`v45接口冻结与差异裁定.md`（含修订追踪表）、`部署脚本整改设计-v45.md`、`v45测试矩阵.md`、`v45目标Linux实验方案.md`。待独立复审；**实验/施工未授权**。
+**v46 修订（2026-11-24）**：按 v45 待审意见修五项：spawn_closed/cli_spawn_failure（failure 合法终止）、T2-21a 计时（t_eof 起 126s；早退分支 a2）、W4R 六子态 live/dead 与 hold-live 优先级（T3-22c/d/e 拆 live/dead）、resolution 双写原子性（文件先/WAL 后/文件权威/文件最后删）、P3a/P4a/P1-H/token 失败测试映射（T2-22/T3-24/T3-25）。计数 108 族/145 子例（不删旧）。产出 `v46修订说明.md`、`部署脚本整改设计-v46.md`、`v46测试矩阵.md`、`v46目标Linux实验方案.md`。待复审；**实验/施工未授权**。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
 
