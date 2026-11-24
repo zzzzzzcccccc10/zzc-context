@@ -73,7 +73,8 @@ PENDING 3 未关闭（真机故障注入未验证）；B v6 设计基线已确�
 **v50 修订（2026-11-24）**：写 `v50修订说明.md`：六行表写入设计 §4（唯一恢复规则；非 epoch4/不完整/身份缺失→30 零清理）；T3-25e 严格化并加 n/o/p；schema 加 `audit_record`、T3-25m 拆 m1/m2/m3；逐 ID 归属清单（T3-22 8/T3-23 13/T3-24 2/T3-25 16），计数 **108 族/156 子例**（148 归并口径作废）。待复审；**实验/施工未授权**。
 **v50 复审（2026-11-24）**：独立复审**不通过**，建议 v51；报告 `v50复审报告.md`。P0：设计 §4/实验 §5.4 仍残留“WAL 存在/文件缺→补文件”宽泛规则。P1：n/o/p 未入矩阵正式用例区；audit 失败状态自描述矛盾（失败状态依赖已写失败文件）。P2：计数应 161（T3-25 21），非 156；T3-22/T3-23 重叠需区分依据。
 **v51 修订（2026-11-24）**：写 `v51修订说明.md`：删除宽泛“补文件”，文件缺失一律服从六行表（仅 epoch4 完整一致可重建）；矩阵加 T3-25n/o/p 正式行（30/零写/零清理/保留）；audit 失败只写 stdout（`audit_record_write_failed`），残留按 `unknown` 不读权威、O_EXCL 不重写、best-effort 归档；计数 **108 族/161 子例**（T3-25 21、T3 70）；T3-22 入口聚合 vs T3-23 逐态细分。待复审；**实验/施工未授权**。
-**v51 复审（2026-11-24）**：独立复审**不通过**，建议 v52；报告 `v51复审报告.md`。P1：audit 失败语义跨文档冲突（schema 仍 written|write_failed；m3 未同步）；恢复身份来源未入设计 §4，矩阵未覆盖全部必需字段。P2：v50 计数历史口径未标；audit `.failed` 归档可能覆盖旧证据。
+**v52 复审（2026-11-24）**：独立复审**不通过**，建议 v53；报告 `v52复审报告.md`。P1：audit 完整写+fsync EIO 重启歧义、`.failed`/原文件并存优先级；resolved_at/attempt_hold/halt_seq 来源缺失。P2：dev-ino 对象表不精确。
+**v53 修订（2026-11-24）**：写 `v53修订说明.md`：audit 跨进程判定（present 需内容+WAL epoch4 交叉；无交叉 unknown；.failed 存在优先 unknown；fsync EIO→unknown）；resolved_at 取自 WAL、attempt_hold 必需、halt_seq 必需；dev-ino 四对象（state/audit/WAL/run_dir）；计数 **108 族/175 子例**。待复审；**实验/施工未授权**。
 **v52 修订（2026-11-24）**：写 `v52修订说明.md`：audit 文件只记录 written、失败只 stdout（`audit_record_write_failed`）、残留 unknown 规则入设计；身份来源表入设计 §4（attempt_created/operator_resolution/attempt_hold/halt 必需字段，缺任一→30）；矩阵加 q/r/s/t 字段拒绝；计数 **108 族/165 子例**（T3-25 25、T3 74）；v50 历史口径标注作废；`.failed` 归档不覆盖（RENAME_NOREPLACE/link+unlink，目标存在保留+unknown）。待复审；**实验/施工未授权**。
 材料：`_deliver/P1-A1-PENDING复审/`（复审报告、L2-M2 执行报告、harness、脱敏摘录）；
 B 方案：`_deliver/B-style_strip-代码保护/B-style_strip-代码保护设计方案.md`。
