@@ -98,7 +98,7 @@
 - m6 注入归档 link/unlink 失败（errno=ENOSPC）、无 `.failed`→unknown、原文件保留、不误认 written、0。
 - m7 篡改 audit.attempt_id≠attempt_created→unknown、0、不覆盖 resolution。
 - 以上 0 类均 WAL 不写、不清理、保留现场；重启边界=注入后重新执行 status/recover。
-- u 缺 resolved_at→30；v 缺 attempt_hold→30；w halt 缺 halt_seq→30；q1–q4 四组 dev-ino 各缺/不符→30；均零 WAL 写、零清理、保留现场。
+- u 缺 resolved_at→30；v 缺 attempt_hold→30；w halt 缺 halt_seq→30；q1–q5 五对象 dev-ino 各缺/不符→30；均零 WAL 写、零清理、保留现场。
 - dev-ino 链：`/`→var→lib→astrbot-deploy→run→<id>→audit→WAL，每级 openat(O_DIRECTORY|O_NOFOLLOW)+fstat 锚点；WAL 用 audit_dir_fd+basename fstatat；失败→30。
 - n 非 epoch4→30、零写/零清理/保留；o 事件不完整（缺 basis/anchor/token_sha256/latch_ino）→30、零写/零清理/保留；p 身份不符→30、零写/零清理/保留。
 - audit 文件：resolution.json 成功后写 `resolution.audit.json`（present/missing）；不参与 resolved；清理不删。
